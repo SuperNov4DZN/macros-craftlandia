@@ -1,0 +1,111 @@
+///OnChat Sleep 2.0///
+$${
+
+//Coloque sua senha abaixo (nao apague os " nem ;):
+&sleep_password = "sua_senha_aqui" ;
+
+//Nao altere nada abaixo.
+
+    IFMATCHES("%CHATCLEAN%","^Voce recebeu 1 coin\(s\) por ter ajudado a acabar com o mal\!$");
+        SET(@sleepkill);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^Seu inventário foi limpo Use \-a to clear ALL.$");
+        SET(@sleepclear);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^Você precisa de mais [\d\w_]+$");
+        SET(@sleeplack);
+    ENDIF; 
+    IFMATCHES("%CHATCLEAN%","^\*\*Rolou perfeitamente\*\*$");
+        SET(@sleeprolled);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^Você conseguiu manter o encantamento nesse item.$");
+        SET(@sleeprepair);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^\[Server\] (.+) Limpando (.+) do chao em 5s$");
+        SET(@sleep5s);
+        SET(@break);
+        WAIT(110T);
+        UNSET(@sleep5s);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^\[Tesouro\] %PLAYER% encontrou um livro: Tesouro Nível ([\d,.]+)$",@#nivel,1,NONE);
+        SET(@sleepbook);
+        SET(@break);
+    ENDIF; 
+    IFMATCHES("%CHATCLEAN%","^A home \"[\d\w_]+\" foi definida com sucesso\!$");
+        SET(@sleepsethome);
+    ENDIF;  
+    IFMATCHES("%CHATCLEAN%","^Você foi enviado\(a\) para a home \"[\w\d_]+\"\!$");
+        SET(@sleepteleport);
+    ENDIF;  
+    IFMATCHES("%CHATCLEAN%","^Teleportado.$");
+        SET(@sleepteleport);
+    ENDIF;  
+    IFMATCHES("%CHATCLEAN%","^»Bem vindo de volta. Por favor digite /login sua-senha.$");
+            IFMATCHES("%&sleep_password%","(.+)_(.+)_(.)");
+                LOG("");
+                LOG("&e[Info] &fInforme sua senha no código da macro &eOnChat&f. &9&o#SLEEP");
+                LOG("");
+            ELSE;
+                    IFMATCHES("%SERVER%","(heaven|server3|hardcore).craftlandia.com.br");
+                        GUI(CHAT);
+                        WAIT(5T);
+                        TYPE("/login %&sleep_password%");
+                        WAIT(5T);
+                        PRESS(RETURN);
+                    ELSE;
+                        ECHO("/login %&sleep_password%");
+                    ENDIF;
+                WAIT(40T);
+                LOG("");
+                LOG("&e[Info] &fLogin realizado. &9&o#SLEEP");
+                LOG("");
+            ENDIF;
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^(.*) deseja ir até você! Use \/bring \@nick para aceitar.$",&nick_bring,1,NONE);
+        LOG("");
+        LOG("&e[Info] &fPressione a tecla &eDelete &fpara aceitar o call de &e%&nick_bring%&f. &9&o#SLEEP");
+        LOG("");    
+        SET(#mileseconds_bring,"600");
+            DO;
+                DEC(#mileseconds_bring,1);
+                    IF(KEY_DELETE);
+                            DO;WHILE(KEY_DELETE);
+                            IFMATCHES("%SERVER%","(heaven|server3|hardcore).craftlandia.com.br");
+                                GUI(CHAT);
+                                WAIT(5T);
+                                TYPE("/bring @%&nick_bring%");
+                                WAIT(5T);
+                                PRESS(RETURN);
+                            ELSE;
+                                ECHO("/bring @%&nick_bring%");
+                            ENDIF;
+                        LOG("");
+                        LOG("&e[Info] &fCall de &e%&nick_bring%&f aceito. &9&o#SLEEP"); 
+                        LOG("");
+                        BREAK;
+                    ENDIF;
+            UNTIL(%#mileseconds_bring%<1);
+            IF(%#mileseconds_bring%<1);
+                LOG("");
+                LOG("&e[Info] &fCall de &e%&nick_bring%&f rejeitado. &9&o#SLEEP");
+                LOG("");
+            ENDIF;
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^\[CraftLandia\] Você matou: (.*)$",&nick_death,1,NONE);
+        INC(#onchat_kills,1);
+        LOG("");
+        LOG("&e[Info] &fVocê matou &e%&nick_death%&f. (&e&l%#onchat_kills%&f) &9&o#SLEEP");
+        LOG("");
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","» Você está tentando (.+) um item por (.+) coin\(s\) em uma loja desconhecida");
+        }$$/confiar$${
+        CALCYAWTO(-500,-500,#sleep_yaw,#distance);
+            IF(%#sleep_yaw%=0);
+                ACHIEVEMENTGET("/confiar #SLEEP","323");
+            ELSE;
+                ACHEIEVEMENTGET("/confiar #SLEEP","sign");
+            ENDIF;
+    ENDIF;
+    
+}$$  
+///OnChat Sleep 2.0///
