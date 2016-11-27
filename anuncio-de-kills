@@ -1,0 +1,6 @@
+$${
+//coloque a mensagem abaixo//
+&mensagem="epa mano tu dropou :)";
+ ifmatches(%CHATCLEAN%);
+  "^\[CraftLandia\] Você matou: ([a-zA-Z0-9\-_](2,16})";
+   
