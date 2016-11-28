@@ -1,0 +1,24 @@
+$${
+ if(ap);
+  log(&f&l&o[&3&l&oSPRINT&f&l&o]&f&l&o[&4&l&oOFF&f&l&o]);
+ unset(ap);
+stop();
+ else;
+  log(&f&l&o[&3&l&oSPRINT&f&l&o]&f&l&o[&a&l&oON&f&l&o]);
+ set(ap);
+do;
+ sprint();
+  ifmatches(%GUI%,GUIINVENTORY);
+ if(KEY_W);
+do;
+ keydown(forward);
+  ifmatches(%GUI%,GUIINVENTORY);
+ else;
+break;
+ endif;
+  loop;
+ endif;
+endif;
+ loop;
+endif;
+}$$
