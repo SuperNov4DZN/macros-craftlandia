@@ -1,0 +1,324 @@
+$${
+
+                           if(sleepblaze);
+
+                              log("&4&l[MACRO] &6SLEE'PESCA Blaze &4[OFF]");
+                              ACHIEVEMENTGET("(Upgrade 0) Macro [OFF]",35:14);
+                                                 log("&0-----------------------------------")
+                                                 log("&a-> &6Você matou:")
+                                                 log("&9[%#sleepblazenumber%] &8Blaze's &4!!")
+                                                 log("")
+                                                 log("&a-> &6Aproximadamente (Em media):")
+                                                 log("&9[%#sleepblazerodnumber%] &8BlazeRod's &4!!")
+                                                 log("&9[%#sleepblazerodmoney%] &8Coin's &4!!")
+                                                 log("&0-----------------------------------")
+                                                 log( );
+                              unset(sleepblaze);
+                              unset(sleepcheck);
+                              unset(@sleeplook);
+                              keyup(forward);
+                              keyup(sneak);
+                              stop();
+                           else;
+                              log("&2&l[MACRO] &6SLEE'PESCA Blaze &2[ON]");
+                              ACHIEVEMENTGET("(Upgrade 0) Macro [ON]",35:5);
+                              set(sleepblaze);
+                              set(sleepcheck);
+                              set(sleeplook);
+                              endif;
+
+IFMATCHES(%DIRECTION%,N);&sleephitdirection=NORTH;endif;
+IFMATCHES(%DIRECTION%,S);&sleephitdirection=SOUTH;endif;
+IFMATCHES(%DIRECTION%,W);&sleephitdirection=WEST;endif;
+IFMATCHES(%DIRECTION%,E);&sleephitdirection=EAST;endif;
+
+#sleepchest=1;
+#sleepchest2=1;
+#sleepitem=346;
+#sleepitemdur=19;
+#sleepitemrepair=287;
+#sleepchecktime=1000;
+#sleepusespeed=4;
+#sleepitemdrop=369;
+#sleeplackcount=0;
+#sleepblazenumber=0;
+#sleepblazerodnumber=0;
+#sleepblazerodmoney=0;
+
+             log("");
+             log("&8-> &8Veja como deixar seu inventário:");
+             log("&7http://i.imgur.com/iWvpvqx.png &8!!");
+             log("&8-> &8Veja como deve ficar a trap:");
+             log("&7http://i.imgur.com/9h3fxs0.png &8!!");
+             log("");
+
+unset(@sleeplack);
+if(sleeplook);
+look(%&sleephitdirection%);
+look(,-32);
+endif;
+                                                        do;
+                                                        do(%#sleepchecktime%);
+                                                        do(%#sleepchecktime%);
+                     if(@sleeplack);
+                        inc(#sleeplackcount,1);
+                            unset(@sleeplack);
+                     endif;
+                     if(%#sleeplackcount%>=3);
+log("");
+log("&8-> &7Impossivel Reparar !!");
+log("&8-> &7Resolvendo...");
+log("");
+                              keyup(forward);
+                              keyup(sneak);
+                                              }$$/home sleepblazebaus$${wait(7);}$$/home sleepblazebaus$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+
+                                  DO;
+                                  if(%#sleepchest2%=1);gui();wait(300ms);look(180,288);endif;
+                                  if(%#sleepchest2%=2);gui();wait(300ms);look(180,307);endif;
+                                  if(%#sleepchest2%=3);gui();wait(300ms);look(180,10);endif;
+                                  if(%#sleepchest2%=4);gui();wait(300ms);look(180,63);endif;
+                                  if(%#sleepchest2%=5);gui();wait(300ms);look(270,288);endif;
+                                  if(%#sleepchest2%=6);gui();wait(300ms);look(270,307);endif;
+                                  if(%#sleepchest2%=7);gui();wait(300ms);look(270,10);endif;
+                                  if(%#sleepchest2%=8);gui();wait(300ms);look(270,63);endif;
+                                  if(%#sleepchest2%=9);gui();wait(300ms);look(358,288);endif;
+                                  if(%#sleepchest2%=10);gui();wait(300ms);look(358,307);endif;
+                                  if(%#sleepchest2%=11);gui();wait(300ms);look(358,12);endif;
+                                  if(%#sleepchest2%=12);gui();wait(300ms);look(358,63);endif;
+                                  if(%#sleepchest2%=13);gui();wait(300ms);look(90,288);endif;
+                                  if(%#sleepchest2%=14);gui();wait(300ms);look(90,307);endif;
+                                  if(%#sleepchest2%=15);gui();wait(300ms);look(90,12);endif;
+                                  if(%#sleepchest2%=16);gui();wait(300ms);look(90,63);endif;
+wait(600ms);
+key(use);
+wait(5);
+           for(#slotn,54,89);
+           getslotitem(%#slotn%,#id,#stack);
+           if((%#id%=%#sleepitem%) || (%#id%=%#sleepitemrepair%));
+           else;
+           slotclick(%#slotn%,l,true);
+           wait(185ms);
+           endif;
+           next;
+           wait(185ms);
+           getslotitem(53,#id,#stack);
+           wait(185ms);
+           if(%#stack%!=0);
+           inc(#sleepchest2);
+           endif;
+           if(%#bau%=13);
+           unset(sleepcheck);
+           else;
+           endif;
+           until(%#stack%=0);
+           gui();
+           wait(600ms);
+                                              }$$/home sleeplinha$${wait(7);}$$/home sleeplinha$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+
+IFMATCHES(%DIRECTION%,N);&sleepshopdirection=NORTH;endif;
+IFMATCHES(%DIRECTION%,S);&sleepshopdirection=SOUTH;endif;
+IFMATCHES(%DIRECTION%,W);&sleepshopdirection=WEST;endif;
+IFMATCHES(%DIRECTION%,E);&sleepshopdirection=EAST;endif;
+
+                        gui(inventory);
+                        wait(3);
+                        #id=%#sleepitemrepair%;
+                        do;
+                        getslotitem(14,#id,#stack);
+                        wait(185ms);
+                        if(%#id%=%#sleepitemrepair%);
+                        #tem=1;
+                        else;
+                        #tem=0;
+                        endif;
+                        gui(inventory);
+                        wait(15ms);
+
+                                           if(%HIT%="PLAYER");
+                                              look(%&sleepshopdirection%);
+                                              }$$[#SLEEPMACROS] porfavor, saia da frente da placa, isso pode causar ban !!$${
+                                              gui(inventory);
+                                              keydown(back);
+                                              wait(500ms);
+                                              keyup(back);
+                                              wait(17);
+                                                              if(%HIT%="PLAYER");
+                                                                 }$$[#SLEEPMACROS] caso alguem tire uma print de seu ato, voce sera ser banido !!$${
+                                                              endif;
+                                              wait(17);
+                                                              if(%HIT%="PLAYER");
+                                                                 }$$[#SLEEPMACROS] printscreen automatico em 10 segundos, porfavor saia !!$${
+                                                              endif;
+                                              wait(17);
+                                                              if(%HIT%="PLAYER");
+                                                                 }$$[#SLEEPMACROS] printscreen salvo, infelizmente vou denuncia-lo !!$${
+                                                                 press(f2);
+                                                              endif;
+
+                                              }$$/home sleeplinha$${
+                                              wait(1000ms);     
+                                              gui(inventory);
+                                              wait(4);
+                                           endif;
+
+                        key(use);
+                        wait(300ms);
+                        until(%#tem%=1);
+                        wait(500ms);
+                        gui();
+                        wait(600ms);
+                        unset(@sleeplack);
+                        #sleeplackcount=0;
+                                              }$$/home sleepblaze$${wait(7);}$$/home sleepblaze$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+log("");
+log("&8-> &7Linhas Repostas !!");
+log("&8-> &7Continuando...");
+log("");
+
+      endif;
+      endif;
+      endif;
+                     keydown(forward);
+                     keydown(sneak);
+                     pick(%#sleepitem%);
+
+if(%DURABILITY%<%#sleepitemdur%);
+   look(%&sleephitdirection%);
+   look(,72);
+   pick(%#sleepitem%);
+   key(use);
+   wait(900ms);
+endif;
+
+if(%HIT%="ENTITY");
+   key(use);
+   wait(%#sleepusespeed%ms);
+endif;
+
+if(%DURABILITY%<%#sleepitemdur%);
+   look(%&sleephitdirection%);
+   look(,72);
+   pick(%#sleepitem%);
+   key(use);
+   wait(900ms);
+endif;
+
+                     if(@sleepmobkill);
+                        inc(#sleepblazenumber,1);
+                        inc(#sleepblazerodnumber,3);
+                        inc(#sleepblazerodmoney,665);
+
+                                                 log("&0-----------------------------------")
+                                                 log("&a-> &6Você matou:")
+                                                 log("&9[%#sleepblazenumber%] &8Blaze's &4!!")
+                                                 log("")
+                                                 log("&a-> &6Aproximadamente (Em media):")
+                                                 log("&9[%#sleepblazerodnumber%] &8BlazeRod's &4!!")
+                                                 log("&9[%#sleepblazerodmoney%] &8Coin's &4!!")
+                                                 log("&0-----------------------------------")
+                                                 log( );
+
+                            unset(@sleepmobkill);
+                     endif;
+
+                     look(%&sleephitdirection%);
+                     look(,-32);
+                     loop;
+
+           if(sleepcheck);
+log("");
+log("&8-> &7Verificando Inventário !!");
+log("&8-> &7Aguardando...");
+log("");
+           #sleeplackcount=0;
+           gui(inventory);
+           wait(600ms);
+           for(#slot,36,44);
+           getslotitem(%#slot%,#id,#stack);
+           if((%#id%=%#sleepitemrepair%) || (%#id%=%#sleepitem%));
+           next;
+           else;
+           slotclick(%#slot%,l,true);
+           wait(185ms);
+           endif;
+           next;
+           getslotitem(33,#id,#stack);
+           if(%#stack%=0);
+           gui();
+log("");
+log("&8-> &7Nada Anormal !!");
+log("&8-> &7Continuando...");
+log("");
+           else;
+           gui();
+log("");
+log("&8-> &7Inventário Cheio !!");
+log("&8-> &7Resolvendo...");
+log("");
+
+keyup(forward);
+keyup(sneak);
+
+
+                                              }$$/home sleepblazebaus$${wait(7);}$$/home sleepblazebaus$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+                                  DO;
+                                  if(%#sleepchest%=1);gui();WAIT(300ms);look(180,288);endif;
+                                  if(%#sleepchest%=2);gui();wait(300ms);look(180,307);endif;
+                                  if(%#sleepchest%=3);gui();wait(300ms);look(180,10);endif;
+                                  if(%#sleepchest%=4);gui();wait(300ms);look(180,63);endif;
+                                  if(%#sleepchest%=5);gui();wait(300ms);look(270,288);endif;
+                                  if(%#sleepchest%=6);gui();wait(300ms);look(270,307);endif;
+                                  if(%#sleepchest%=7);gui();wait(300ms);look(270,10);endif;
+                                  if(%#sleepchest%=8);gui();wait(300ms);look(270,63);endif;
+                                  if(%#sleepchest%=9);gui();wait(300ms);look(358,288);endif;
+                                  if(%#sleepchest%=10);gui();wait(300ms);look(358,307);endif;
+                                  if(%#sleepchest%=11);gui();wait(300ms);look(358,12);endif;
+                                  if(%#sleepchest%=12);gui();wait(300ms);look(358,63);endif;
+                                  if(%#sleepchest%=13);gui();wait(300ms);look(90,288);endif;
+                                  if(%#sleepchest%=14);gui();wait(300ms);look(90,307);endif;
+                                  if(%#sleepchest%=15);gui();wait(300ms);look(90,12);endif;
+                                  if(%#sleepchest%=16);gui();wait(300ms);look(90,63);endif;
+wait(600ms);
+key(use);
+wait(5);
+
+           for(#slotn,54,89);
+           getslotitem(%#slotn%,#id,#stack);
+           if((%#id%=%#sleepitem%) || (%#id%=%#sleepitemrepair%));
+           else;
+           slotclick(%#slotn%,l,true);
+           wait(185ms);
+           endif;
+           next;
+           wait(185ms);
+           getslotitem(53,#id,#stack);
+           wait(185ms);
+           if(%#stack%!=0);
+           inc(#sleepchest);
+           endif;
+           if(%#bau%=13);
+           unset(sleepcheck);
+           else;
+           endif;
+           until(%#stack%=0);
+                                              }$$/home sleepblaze$${wait(7);}$$/home sleepblaze$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+log("");
+log("&8-> &7BlazeRods Guardados !!");
+log("&8-> &7Continuando...");
+log("");
+
+                       endif;
+                       endif;
+            gui();
+            loop;
+endif;
+endif;
+endif;
+
+}$$
