@@ -1,0 +1,324 @@
+$${
+if(x);
+log("&3Macro Pesca Organizado &4(OFF)");
+unset(x);
+stop();
+else(x);
+log("&3Macro Pesca Organizado &a(ON)");
+set(x);
+endif;
+
+ifmatches(%DIRECTION%,N);&dir=NORTH;endif;
+ifmatches(%DIRECTION%,S);&dir=SOUTH;endif;
+ifmatches(%DIRECTION%,E);&dir=EAST;endif;
+ifmatches(%DIRECTION%,W);&dir=WEST;endif;
+
+gui(INVENTORY);
+
+IF(%DURABILITY% < 15);
+gui();
+look(,90);
+key(use);
+wait(1);
+key(attack);
+wait(1);
+gui(inventory);
+endif;
+
+do();
+GUI(INVENTORY);
+do(100);
+IF(%DURABILITY% < 15);
+gui();
+look(,90);
+key(use);
+wait(1);
+gui(inventory);
+endif;
+look(%&dir%);
+look(,-90);
+pick(346);
+key(use);
+wait(1ms);
+loop;
+
+//1 VEREficaçao
+#s64=0;#sinc=0;#svazio=0;
+
+for(#nslot,9,35);
+getslotitem(%#nslot%,#id,#stack);
+if(%#stack%!=0);
+INC(#sinc,1);
+endif;
+else;
+INC(#svazio,1);
+endif;
+next;
+
+if(%#sinc% = 27);
+
+look(%&dir%);look(,0);
+ARRAYSIZE(#li,#size);#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#li,#tempvar);
+NEXT;
+
+#tempvar = 0;
+#li[] = 306;
+#li[] = 307;
+#li[] = 308;
+#li[] = 309;
+#li[] = 314;
+#li[] = 315;
+#li[] = 316;
+#li[] = 317;
+#li[] = 306;
+#li[] = 307;
+#li[] = 308;
+#li[] = 309;
+#li[] = 292;
+#li[] = 283;
+#li[] = 284;
+#li[] = 285;
+#li[] = 286;
+#li[] = 294;
+#li[] = 292;
+#li[] = 267;
+#li[] = 256;
+#li[] = 257;
+#li[] = 258;
+#li[] = 351;
+#li[] =298;
+#li[] =299;
+#li[] =300;
+#li[] =301;
+#li[] =290;
+#li[] =291;
+#li[] =275;
+#li[] =274;
+#li[] =273;
+#li[] =272;
+#li[] =271;
+#li[] =270;
+#li[] =269;
+#li[] =268;
+#li[] =267;
+#li[] =256;
+#li[] =257;
+#li[] =258;
+#li[] =2254;
+#li[] =2255;
+#li[] =2256;
+#li[] =2257;
+#li[] =2258;
+#li[] =2259;
+#li[] =2260;
+#li[] =2261;
+#li[] =2262;
+#li[] =2263;
+#li[] =2264;
+#li[] =2265;
+#li[] =2266;
+#li[] =2267;
+
+
+log("&6limpando inventario .");
+for(#slotn,9,44);
+GETSLOTITEM(%#slotn%,#id,#stack);INDEXOF(#li,#index,%#id%);
+IF((#index != -1) && (%#id% != 0));
+SLOTCLICK(%#slotn%);SLOTCLICK(-999);WAIT(50ms);
+ENDIF;
+endif;
+next;
+endif;
+
+//1 VEREficaçao
+#s64=0;#sinc=0;#svazio=0;
+
+for(#nslot,9,35);
+getslotitem(%#nslot%,#id,#stack);
+if(%#stack%!=0);
+INC(#sinc,1);
+endif;
+else;
+INC(#svazio,1);
+endif;
+next;
+
+if(%#sinc% >= 27);
+//==================================== baus sets
+wait(1);
+}$$/home 10$${
+wait(8);
+log("&6Guardando itens &4SETS .");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 310;
+#wl[] = 311;
+#wl[] = 312;
+#wl[] = 313;
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 10$${
+endif;
+//================================================ baus peixe
+wait(1);
+}$$/home 11$${
+wait(8);
+log("&6Guardando itens &4PEIXE.");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 349;
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 11$${
+endif;
+//================================================ baus minerios
+wait(1);
+}$$/home 13$${
+wait(8);
+log("&6Guardando itens &4MINERIOS .");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 264;
+#wl[] = 266;
+#wl[] = 369;
+#wl[] = 265;
+#wl[] = 370;
+#wl[] = 387;
+
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 13$${
+endif;
+//================================================ baus FERRAMENTA
+wait(1);
+}$$/home 14$${
+wait(8);
+log("&6Guardando itens &4FERRAMENTAS .");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 279;
+#wl[] = 293;
+#wl[] = 278;
+#wl[] = 277;
+#wl[] = 276;
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 14$${
+endif;
+//================================================ verifica bau cheio
+until(%#stack%=0);
+log("&6itens guardandos .");
+}$$/home pesqueiro$${wait(8);
+endif;endif;loop;
+}$$
+
