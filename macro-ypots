@@ -1,0 +1,803 @@
+$${
+if(potions);
+unset(potions);
+log("&6[yPotions] &4Desligado");
+stop();
+else;
+set(potions);
+log("&6[yPotions] &aLigado");
+endif;
+}$$$${
+&ypots_dir=%DIRECTION%;
+ifmatches(%DIRECTION%,N);
+&ypots_dir=NORTH;
+endif;
+ifmatches(%DIRECTION%,S);
+&ypots_dir=SOUTH;
+endif;
+ifmatches(%DIRECTION%,E);
+&ypots_dir=EAST;
+endif;
+ifmatches(%DIRECTION%,W);
+&ypots_dir=WEST;
+endif;
+
+&ypots_incrementos="^348$|^331$";
+&ypots_ingredientes="^370$|^377$|^375$|^378$|^396$|^382$|^353$";
+#ypots_frascos=1;
+wait(1);
+gui();
+getslotitem(2,#id);
+ifmatches(%#id%,%&ypots_incrementos%);
+&ypots_incrementada=true;
+else;
+&ypots_incrementada=false;
+endif;
+getslotitem(3,#id);
+if(%#id%=289);
+&ypots_polvora=true;
+else;
+&ypots_polvora=false;
+endif;
+
+achievementget(AFK =),373,8197);
+do;
+
+//===================================================fungo====================================================//
+do(28);
+look(%&ypots_dir%);
+look(,65);
+slot(9);
+key(use);
+wait(120ms);
+loop;
+wait(1);
+
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,4,6);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,7,9);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,10,12);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,13,15);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,16,18);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,19,21);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,22,24);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,25,27);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,28,30);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+do(28);
+look(%&ypots_dir%);
+look(,65);
+slot(9);
+key(use);
+wait(120ms);
+loop;
+wait(1);
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,4,6);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,7,9);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,10,12);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,13,15);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,16,18);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,19,21);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,22,24);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,25,27);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,28,30);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//===================================================ingrediente================================================//
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+
+//===================================================incremento================================================//
+ifmatches(%&ypots_incrementada%,true);
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+endif;
+
+//===================================================pólvora================================================//
+ifmatches(%&ypots_polvora%,true);
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+endif;
+
+//=========================pegar pot=================//
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);
+gui();
+
+}$$/home ypots_baus$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+wait(250ms);
+for(#slot,54,80);
+slotclick(%#slot%,l,true);
+wait(120ms);
+next;
+getslotitem(53,#id);
+if(%#id%!=0);
+gui();
+wait(100ms);
+keydown(sneak);
+keydown(right);
+wait(730ms);
+keyup(right);
+keyup(sneak);
+wait(500ms);
+}$$/sethome ypots_baus$${
+wait(500ms);
+if((%HITID%!=54)&&(%HITID%!=146));
+log("&6[yPotions] &4Desligado");
+unset(potions);
+stop();
+endif;
+else;
+gui();
+endif;
+wait(500ms);
+}$$/home$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);
+gui();
+}$$/home ypots_baus$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+wait(250ms);
+for(#slot,54,80);
+slotclick(%#slot%,l,true);
+wait(120ms);
+next;
+getslotitem(53,#id);
+if(%#id%!=0);
+gui();
+wait(100ms);
+keydown(sneak);
+keydown(right);
+wait(730ms);
+keyup(right);
+keyup(sneak);
+wait(500ms);
+}$$/sethome ypots_baus$${
+wait(500ms);
+if((%HITID%!=54)&&(%HITID%!=146));
+log("&6[yPotions] &4Desligado");
+unset(potions);
+stop();
+endif;
+else;
+gui();
+endif;
+wait(500ms);
+}$$/home$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+if(%#ypots_frascos%=1);look(%&ypots_dir%);look(+145,32);wait(100ms);endif;
+if(%#ypots_frascos%=2);look(%&ypots_dir%);look(-180,38);wait(100ms);endif;
+if(%#ypots_frascos%=3);look(%&ypots_dir%);look(-145,32);wait(100ms);endif;
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=374);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=374);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+getslotitem(53,#id);
+if(%#id%=0);
+inc(#ypots_frascos);
+endif;
+gui();
+
+wait(500ms);
+getslotitem(1,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(-180,-30);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_ingredientes%);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_ingredientes%);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+
+ifmatches(%&ypots_incrementada%,true);
+wait(500ms);
+getslotitem(2,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(-148,5);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_incrementos%);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_incrementos%);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+endif;
+
+ifmatches(%&ypots_polvora%,true);
+wait(500ms);
+getslotitem(3,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(+148,5);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=289);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=289);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+endif;
+
+wait(500ms);
+getslotitem(8,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(-180,5);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=372);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=372);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+loop;
+}$$
+
