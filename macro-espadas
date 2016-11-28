@@ -1,0 +1,43 @@
+$${
+IF(espada);
+log("&l&f[&b&lMacro&f&l]&f&l[&3&lEspadas 2.0&f&l] &f&l[&4&lOff&f&l]");
+keyup(SNEAK);
+keyup(FORWARD);
+unset(espada);
+stop();
+else;
+log("&l&f[&b&lMacro&f&l]&f&l[&3&lEspadas 2.0&f&l] &f&l[&a&lOn&f&l]");
+log("&f&l[&3&lLvUP&f&l]");
+set(espada);
+ACHIEVEMENTGET(Upando Espadas!,276:276); 
+IFMATCHES(%DIRECTION%,N);
+&frente = NORTH;
+ENDIF;
+IFMATCHES(%DIRECTION%,S);
+&frente = SOUTH;
+ENDIF;
+IFMATCHES(%DIRECTION%,W);
+&frente = WEST;
+ENDIF;
+IFMATCHES(%DIRECTION%,E);
+&frente = EAST;
+ENDIF;
+ 
+do;
+keydown(FORWARD);
+wait(10ms);
+keydown(SNEAK);
+if(%DURABILITY%<100);
+log("&l&f[&6&lTrocando de &a&lEspada!&f&l]")
+wait(10ms);
+slot(2);
+wait(10ms);
+endif;
+ 
+look(%&frente%);
+look(,0);
+key(attack);
+wait(150ms);
+loop;
+ 
+}$$
