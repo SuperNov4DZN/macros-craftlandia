@@ -766,6 +766,7 @@ gui();
 endif;
 endif;
 
+
 wait(500ms);
 getslotitem(8,#id,#stack);
 if(%#stack%<=18);
