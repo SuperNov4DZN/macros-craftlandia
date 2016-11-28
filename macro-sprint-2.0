@@ -1,0 +1,46 @@
+$${
+if(x);unset(x);unsprint;log(&f&l[&3&lSPRINT 2.0&f&l] &f&l[&4&lOFF&f&l]);STOP;
+else;set(x);log(&f&l[&3&lSPRINT 2.0&f&l] &f&l[&2&lON&f&l]);
+ACHIEVEMENTGET(Corre Corre Corre!,373:8226);
+}$$
+$${
+endif;
+ 
+do;
+ifmatches(%GUI%,None);
+if(%#tr%>0);keyup(ForWard);endif;
+dec(#tr,%#tr%);
+if(KEY_W);sprint;else;unsprint;endif;
+ 
+else;
+&dir=%DIRECTION%;
+ 
+ifmatches(%GUI%,Inventory|Chat|Chest|Furnace|Esc);
+keydown(FORWARD);SPRINT;
+ifmatches(%DIRECTION%,N);#a=-1;#b=0;&op=SOUTH;endif;ifmatches(%DIRECTION%,S);#a=+1;#b=0;&op=NORTH;endif;
+ifmatches(%DIRECTION%,W);#a=0;#b=-1;&op=EAST;endif;ifmatches(%DIRECTION%,E);#a=0;#b=+1;&op=WEST;endif;
+getidrel(%#b%,1,%#a%,#d,);getidrel(%#b%,0,%#a%,#c,);if((%#c%!=0)|(%#d%!=0));;&dir=%&op%;endif;look(%&dir%);
+ 
+if(KEY_S);
+ifmatches(%DIRECTION%,N);#a=-1;#b=0;&op=SOUTH;endif;ifmatches(%DIRECTION%,S);#a=+1;#b=0;&opNORTH;endif;
+ifmatches(%DIRECTION%,W);#a=0;#b=-1;&op=EAST;endif;ifmatches(%DIRECTION%,E);#a=0;#b=+1;&op=WEST;endif;
+getidrel(%#b%,1,%#a%,#d,);getidrel(%#b%,0,%#a%,#c,);if((%#c%!=0)|(%#d%!=0));&dir=%&op%;endif;look(%&dir%);keydown(back);else;keyup(back);endif;
+ 
+if(KEY_A);
+ifmatches(%DIRECTION%,N);#a=-1;#b=0;&op=SOUTH;endif;ifmatches(%DIRECTION%,S);#a=+1;#b=0;&opNORTH;endif;
+ifmatches(%DIRECTION%,W);#a=0;#b=-1;&op=EAST;endif;ifmatches(%DIRECTION%,E);#a=0;#b=+1;&op=WEST;endif;
+getidrel(%#b%,1,%#a%,#d,);getidrel(%#b%,0,%#a%,#c,);if((%#c%!=0)|(%#d%!=0));&dir=%&op%;endif;look(%&dir%);keydown(left);else;keyup(left);endif;
+ 
+ 
+if(KEY_D);
+ifmatches(%DIRECTION%,N);#a=-1;#b=0;&op=SOUTH;endif;ifmatches(%DIRECTION%,S);#a=+1;#b=0;&opNORTH;endif;
+ifmatches(%DIRECTION%,W);#a=0;#b=-1;&op=EAST;endif;ifmatches(%DIRECTION%,E);#a=0;#b=+1;&op=WEST;endif;
+getidrel(%#b%,1,%#a%,#d,);getidrel(%#b%,0,%#a%,#c,);if((%#c%!=0)|(%#d%!=0));&dir=%&op%;endif;look(%&dir%);keydown(right);else;keyup(right);endif;
+ 
+if(KEY_SPACE);keydown(jump);else;keyup(jump);endif;
+inc(#tr,1);
+endif;
+ 
+endif;
+loop;
+}$$
