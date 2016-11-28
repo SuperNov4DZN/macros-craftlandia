@@ -1,0 +1,29 @@
+$${
+ IF(auto);
+ LOG("&f&l&o[&3&l&o%PLAYER%&f&l&o]&f&l&o[&3&l&oAuto-Click&f&l&o]&f&l&o[&c&l&oOFF&f&l&o]");
+  UNSPRINT;
+   UNSET(auto);
+  STOP();
+ ELSE;
+LOG("&f&l&o[&3&l&o%PLAYER%&f&l&o]&f&l&o[&3&l&oAuto-Click&f&l&o]&f&l&o[&a&l&oON&f&l&o]");
+ SPRINT;
+  LOG("&f&l&o[&3&l&oPara desligar pressione&f&l&o]&f&l&o[&3&l&o%KEYNAME%&f&l&o]");
+   SET(auto);
+  DO;
+ IF(%HEALTH%<1);
+}$$
+&3vou &4morrerrrrrr&3!&f;-;
+$${
+ LOG("&f&l&o[&3&l&o%PLAYER%&f&l&o]&f&l&o[&3&l&oAuto-Click&f&l&o]&f&l&o[&c&l&oOFF&f&l&o]");
+ UNSET(auto);
+  STOP();
+   ENDIF;
+  ELSE;
+ KEY(attack);
+WAIT(11ms);
+ IF(KEY_G);
+  KEY(use);
+   WAIT(1t);
+  ENDIF;
+ LOOP;
+}$$
