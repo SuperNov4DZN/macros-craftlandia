@@ -1,0 +1,47 @@
+$${
+
+if(arco);
+
+log("&4[Macro] Arco 1.0 OFF");
+
+unset(arco);
+
+stop();
+
+else;
+
+log("&2[Macro] Arco 1.0 ON");
+
+set(arco);
+
+for(#i,1,9);
+
+slot(%#i%);
+
+if(ITEM=261);
+
+do;
+
+do(23);
+
+key(use);
+
+loop;
+
+while(DURABILITY>5);
+
+endif;
+
+next;
+
+endif;
+
+log("&4[Macro] Arco 1.0 OFF");
+
+log("&4[Macro] Repare seus arcos para continuar upando :p");
+
+unset(arco);
+
+stop();
+
+}$$
