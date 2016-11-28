@@ -1,0 +1,88 @@
+$${if(durlow);
+log("&d{MACRO} &6Detector de set com baixa durabilidade &4[OFF]");
+unset(durlow);
+stop();
+else;
+log("&d{MACRO} &6Detector de set com baixa durabilidade &a[ON]");
+set(durlow);
+if(durlow);
+
+if(%HELMDURABILITY%=0);
+LOG("&d»»&6Capacete: &aSem Capacete");
+else;
+LOG("&d»»&6Capacete: &a%HELMDURABILITY%");
+endif;
+if(%CHESTPLATEDURABILITY%=0);
+LOG("&d»»&6Peitoral: &aSem Peitoral");
+else;
+LOG("&d»»&6Peitoral: &a%CHESTPLATEDURABILITY%");
+endif;
+if(%LEGGINGSDURABILITY%=0);
+LOG("&d»»&6Perneiras: &aSem Perneiras");
+else;
+LOG("&d»»&6Perneiras: &a%LEGGINGSDURABILITY%");
+endif;
+if(%BOOTSDURABILITY%=0);
+LOG("&d»»&6Botas: &aSem Botas");
+else;
+LOG("&d»»&6Botas: &a%BOOTSDURABILITY%");
+endif;
+
+do;
+
+for(#i,1,30);
+
+if(%HELMDURABILITY%=%#i%);
+wait(100ms);
+echo(oloco '-' meu elmo quase quebro);
+wait(500ms);
+gui(inventory);
+wait(50ms);
+slotclick(5,l,true)
+wait(50ms);
+PRESS(ESCAPE);
+log(Capacete com durabilidade abaixo de 30. Movido para o inventário!);
+endif;
+
+
+if(%CHESTPLATEDURABILITY%=%#i%);
+wait(100ms);
+echo(oloco '-' meu peito quase quebro);
+wait(500ms);
+gui(inventory);
+wait(50ms);
+slotclick(6,l,true)
+wait(50ms);
+PRESS(ESCAPE);
+log(Peitoral com durabilidade abaixo de 30. Movido para o inventório!);
+endif;
+
+
+if(%LEGGINGSDURABILITY%=%#i%);
+wait(100ms);
+echo(oloco '-', minha calça quase quebro);
+wait(500ms);
+gui(inventory);
+wait(50ms);
+slotclick(7,l,true)
+wait(50ms);
+PRESS(ESCAPE);
+log(Perneiras com durabilidade abaixo de 30. Movido para o inventório!);
+endif;
+
+
+if(%BOOTSDURABILITY%=%#i%);
+wait(100ms);
+echo(oloco '-' minha bota quase quebro);
+wait(500ms);
+gui(inventory);
+wait(50ms);
+slotclick(8,l,true)
+wait(50ms);
+PRESS(ESCAPE);
+log(Botas com durabilidade abaixo de 30. Movido para o inventório!);
+endif;
+next;
+loop;
+endif;
+endif;}$$ 
