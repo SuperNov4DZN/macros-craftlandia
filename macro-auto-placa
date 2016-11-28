@@ -1,0 +1,266 @@
+$${
+if(mr);
+log( );
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+else;
+log( );
+log(&6&l[PLACA] &d&lAUTOMATICA &2&l[ON]);
+log(&d&lPara desligar pressione &4&l%KEYNAME%);
+log( );
+ACHIEVEMENTGET("by MrBlueees",351:4);
+toggle(mr);
+endif;
+
+if(%&item%=nothing);set(mr1);endif;
+if(%&venda%=nothing);set(mr1);endif;
+if(%&compra%=nothing);set(mr1);endif;
+if(%#qtd%=nothing);set(mr1);endif;
+
+
+if(mr1);
+&cont=n;
+
+IFBEGINSWITH(%&cont%,s);
+IFENDSWITH(%&cont%,s);
+set(continuando);
+ENDIF;
+ENDIF;
+IFBEGINSWITH(%&cont%,S);
+IFENDSWITH(%&cont%,S);
+set(continuando);
+ENDIF;
+ENDIF;
+
+IFBEGINSWITH(%&cont%,n);
+IFENDSWITH(%&cont%,n);
+set(ncontinuando);
+ENDIF;
+ENDIF;
+IFBEGINSWITH(%&cont%,N);
+IFENDSWITH(%&cont%,N);
+set(ncontinuando);
+ENDIF;
+ENDIF;
+
+if(continuando);
+log(&4&lContinuando última configuraçao!);
+unset(ncontinuando);
+unset(continuando);
+
+elseif(ncontinuando);
+prompt(&item,$$i,"Qual o ID do item que estará nesse shop?");
+prompt(&venda,$$?,"Qual o preço para você vender para os players? Caso queira que seja de graça ponha FREE.");
+prompt(&compra,$$?,"Qual o preço para você comprar dos players? Caso queira que seja de graça ponha FREE.");
+prompt(#qtd,$$?,"Qual a quantidade para Comprar/Vender? (Normalmente é 64, ou multiplos dele. Ex: 12,32, etc.)");
+unset(ncontinuando);
+unset(continuando);
+
+else;
+log( );
+log(&4&lRESPOSTA INVALIDA! Coloque apenas &b&lS &4&lou &b&lN&4&l!);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+
+
+endif;
+
+if(%&item%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lPRIMEIRA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+if(%&venda%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lSEGUNDA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+if(%&compra%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lTERCEIRA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+if(%#qtd%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lQUARTA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+do();
+log( );
+log(&4&lPRESSIONE &6&lSHIFT &4&lPOR);
+log(&4&lALGUNS SEGUNDOS PARA COLOCAR SUA PLACA);
+log( );
+log(&d&lSua placa será assim:);
+log(&f&l%PLAYER%);
+log(&3&l%#qtd%);
+log(&3&lB %&venda%:%&compra% S);
+log(&3&l%&item%);
+log( );
+
+wait(2);
+if(SHIFT);
+placesign(%PLAYER%,%#qtd%,B %&venda%:%&compra% S,%&item%,true);
+endif;
+wait(500ms);
+loop;
+
+
+else;
+
+prompt(&cont,$$?,"Continuar última configuraçao? s/n");
+
+IFBEGINSWITH(%&cont%,s);
+IFENDSWITH(%&cont%,s);
+set(continuando);
+ENDIF;
+ENDIF;
+IFBEGINSWITH(%&cont%,S);
+IFENDSWITH(%&cont%,S);
+set(continuando);
+ENDIF;
+ENDIF;
+
+IFBEGINSWITH(%&cont%,n);
+IFENDSWITH(%&cont%,n);
+set(ncontinuando);
+ENDIF;
+ENDIF;
+IFBEGINSWITH(%&cont%,N);
+IFENDSWITH(%&cont%,N);
+set(ncontinuando);
+ENDIF;
+ENDIF;
+
+if(continuando);
+log(&4&lContinuando última configuraçao!);
+unset(ncontinuando);
+unset(continuando);
+
+elseif(ncontinuando);
+prompt(&item,$$i,"Qual o ID do item que estará nesse shop?");
+prompt(&venda,$$?,"Qual o preço para você vender para os players? Caso queira que seja de graça ponha FREE.");
+prompt(&compra,$$?,"Qual o preço para você comprar dos players? Caso queira que seja de graça ponha FREE.");
+prompt(#qtd,$$?,"Qual a quantidade para Comprar/Vender? (Normalmente é 64, ou multiplos dele. Ex: 12,32, etc.");
+unset(ncontinuando);
+unset(continuando);
+
+else;
+log( );
+log(&4&lRESPOSTA INVALIDA! Coloque apenas &b&lS &4&lou &b&lN&4&l!);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+
+
+endif;
+
+if(%&item%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lPRIMEIRA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+if(%&venda%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lSEGUNDA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+if(%&compra%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lTERCEIRA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+if(%#qtd%=nothing);
+log( );
+log(&4&lNENHUM VALOR NA &6&lQUARTA &4&lPERGUNTA);
+log(&6&l[PLACA] &d&lAUTOMATICA &4&l[OFF]);
+log( );
+toggle(mr);
+unset(ncontinuando);
+unset(continuando);
+unset(mr1);
+stop;
+endif;
+
+do();
+log( );
+log(&4&lPRESSIONE &6&lSHIFT &4&lPOR);
+log(&4&lALGUNS SEGUNDOS PARA COLOCAR SUA PLACA);
+log( );
+log(&d&lSua placa será assim:);
+log(&f&l%PLAYER%);
+log(&3&l%#qtd%);
+log(&3&lB %&venda%:%&compra% S);
+log(&3&l%&item%);
+log( );
+
+wait(2);
+if(SHIFT);
+placesign(%PLAYER%,%#qtd%,B %&venda%:%&compra% S,%&item%,true);
+endif;
+wait(500ms);
+loop;
+
+}$$
