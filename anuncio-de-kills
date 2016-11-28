@@ -3,4 +3,11 @@ $${
 &mensagem="epa mano tu dropou :)";
  ifmatches(%CHATCLEAN%);
   "^\[CraftLandia\] Você matou: ([a-zA-Z0-9\-_](2,16})";
+   match(%CHATCLEAN%);
+  "^\[CraftLandia\] Você matou: ([a-zA-Z0-9\-_]{2,16})",{&droped});
+ echo("%&droped% %&mensagem%");
+endif;
+}$$
+  
+    
    
