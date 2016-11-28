@@ -1,0 +1,142 @@
+︶︿︶
+(づ￣ ³￣)づ
+(¬‿¬)﻿
+/clan setrank SuperNov4Gamer &5&l&oIXL&7&l&oX&f&l&o[&4&l&oLider&f&l&o]&5&l&o(づ￣ ³￣)づ (My)
+/clan setrank Nick &5&l&oIXL&7&l&oX&8&l&o[&6&l&oMembro&8&l&o] (None)
+/clan setrank Nick &5&l&oIXL&7&l&oX&f&l&o[&6&l&oMembro&f&l&o] (Conf)
+⚀▄⚀
+ ᴾᴵᴺᴷ ᵀᴴᴱ ᴼᴿᴵᴳᴵᴻᴬᴸ ᴬ ᴹ ᴼ ᴿ ᵖʳᵒᶠᶥᴵᵉ ₂ ᴸᴼᴸ ᴸᴼᵀᴬᴰᴼ ᶤ ᶫᵒᵛᵉ ᵧₒᵤ
+
+✘▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬✘
+26/11/14
+
+jose.258
+▫
+▫
+&1THS
+  T0wElHeAdSl4yeRs
+/g Confiança pra min é igual vidro...quebrou não volta mais ︶︿︶
+
+/clan bb &f&l&kIIIII&4&l&oLIMPANDO&f&l&kIIIII
+/tell Beelah (Ajudei com macro) !
+/tell BellaSweet (Ajudei com itens) !
+
+//Arrumar dpois
+$${ //mensagem coloca aqui baixo// // &mensagem=" epa mano tu dropouuu "; // ifmatches(%CHATCLEAN%),"^\[CraftLandia\] Você matou: ([a-zA-Z0-9\-_]{2,16})"); match(%CHATCLEAN%),"^\[CraftLandia\] Você matou: ([a-zA-Z0-9\-_]{2,16})",{&droped}); echo("&1@%&droped% %&mensagem% "); endif; }$$
+//
+
+key(use);wait(1);if(#tip=1);for(#nslot,0,26);slotclick(%#nslot%,l,true);wait(50ms);next;elseif(#tip=2);for(#nslot,0,53);slotclick(%#nslot%,l,true);wait(50ms);
+
+/g &f#&4TAG&fUNICA&4PARA&fO&aTYESTRUPO &f#&4REAL&aMAGNATA &fé nois =3
+
+
+
+
+
+$${
+IFMATCHES("<%CHATCLEAN%>"."(Mensagem de %%):");
+  DO(1);
+   WAIT(25MS);
+    }$$/r TO OCUPADO $${
+     WAIT(250MS);
+      }$$$${
+       ENDIF;}$$
+
+
+
+
+$${log("&5&l&oCuidado Recebeu &f&l&oDano, &4&l&oVida Atual:&f&l&o%HEALTH%");}$$ $${if(HEALTH>20);log("&5&l&oRecuperou &f&l&oVida, &4&l&oVida Atual:&f&l&o%HEALTH%");}$$
+      
+$${
+if(vidros)
+unset(vidros);
+log(&6[!] Macro de botar Vidro &4&l[DESLIGADO]);
+stop;
+else;
+log(&6[!] Macro de botar Vidro &2&l[LIGADO]);
+ACHIEVEMENTGET(Botando Vidros!,20:20);
+log(&6***&3Desenvolvido por &c&lSuperNov4Gamer&6***);
+}$$
+
+$${log("&5&l&oAlguem &f&l&oEntrou:&b&l&o%PLAYER%");}$$
+
+	if(@tellhomeless);
+		ifmatches(%CHATCLEAN%,"\(Mensagem de ([a-zA-Z0-9\-_]{2,16})\): .*");
+			&homeless_auxname=%&homeless_name%;
+			ifmatches(%CHATCLEAN%,"^\(Mensagem de (.+)\): .*$",&homeless_name,1,none);
+				match(%CHATCLEAN%,"^\(Mensagem de .+\): (.*)$",&homeless_message,1,none);
+				logto("HomeTells_log.txt","%&homeless_name%: %&homeless_message%");			
+				if(%&homeless_auxname%!=%&homeless_name%);
+					if(%@#tellhomeless_ctrl%=1);
+						}$$/r [AFK] No momento nao posso responder - Veja minhas macros: HomelessMacros.blogspot.com$${
+					else;
+						}$$/r [ON] No momento nao posso responder - Tiranndo Aquele PvP ;)$${
+					endif;
+				endif;
+			endif;
+		endif;
+	endif;
+
+
+&2[&fMoney&2] &2quantia &fCoins
+
+&2[&fLucro&2]&f/&2[&fPrejuizo&2]&f:
+
+
+https://notepad.cc/xoraucka65 [
+
+$${
+&rgxsaldo="^(\[l\] [\S]+%PLAYER%\: resetar saldo)$";ifmatches(%CHATCLEAN%,%&rgxsaldo%);set(filt);#saldo=0;&saldo=0;log(&d» &6Saldo Resetado!);endif;
+&rgxmob="^(\[l\] [\S]+%PLAYER%\: reset mob)$";ifmatches(%CHATCLEAN%,%&rgxmob%);set(filt);#mobs=0;log(&d» &6Mobs Resetado!);endif;
+&rgxplayer="^(\[l\] [\S]+%PLAYER%\: reset kills)$";ifmatches(%CHATCLEAN%,%&rgxplayer%);set(filt);#morreu=0;#matou=0;log(&d» &6Mortes Resetadas!);endif;
+$${endif;
+ 
+ifmatches(%CHATCLEAN%,\>(.+) comprou .+,&rum,1);set(filt);ifmatches(%&rum%,Voce);&plt=-;else;&plt=+;endif;
+&rgx1ad="\>.+ comprou .+ por ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx1ad%);MATCH(%CHATCLEAN%,%&rgx1ad%,{&aatd,&bbtd,&cctd});MATCH(%&aatd%%&bbtd%%&cctd%,([0-9]+),{#d});endif;
+&rgx2ad="\>.+ comprou .+ por ([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx2ad%);MATCH(%CHATCLEAN%,%&rgx2ad%,{&bbsd,&ccsd});MATCH(%&bbsd%%&ccsd%,([0-9]+),{#d});endif;
+&rgx3ad="\>.+ comprou .+ por ([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx3ad%);MATCH(%CHATCLEAN%,%&rgx3ad%,{&ccod});MATCH(%&ccod%,([0-9]+),{#d});endif;
+ifmatches(%&plt%,\+);#saldo=%#saldo%+%#d%;@#t=%@#t%-%#d%;endif;ifmatches(%&plt%,\-);@#t=%@#t%+%#d%;#saldo=%#saldo%-%#d%;endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,\>(.+) vendeu .+,&rum,1);set(filt);ifmatches(%&rum%,Voce);&plt=+;else;&plt=-;endif;
+&rgx1ac="\>.+ vendeu .+ por ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx1ac%);MATCH(%CHATCLEAN%,%&rgx1ac%,{&aatc,&bbtc,&cctc});MATCH(%&aatc%%&bbtc%%&cctc%,([0-9]+),{#g});endif;
+&rgx2ac="\>.+ vendeu .+ por ([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx2ac%);MATCH(%CHATCLEAN%,%&rgx2ac%,{&bbsc,&ccsc});MATCH(%&bbsc%%&ccsc%,([0-9]+),{#g});endif;
+&rgx3ac="\>.+ vendeu .+ por ([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx3ac%);MATCH(%CHATCLEAN%,%&rgx3ac%,{&ccac});MATCH(%&ccac%,([0-9]+),{#g});endif;
+ifmatches(%&plt%,\+);#saldo=%#saldo%+%#g%;@#t=%@#t%+%#g%;;endif;ifmatches(%&plt%,\-);@#t=%@#t%-%#g%;#saldo=%#saldo%-%#g%;endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,^\[Money\] ([\S]+).+[\.]$,&rum,1);set(filt);ifmatches(%&rum%,Voce);&plt=-;else;&plt=+;endif;
+&rgx1act="\[Money\] .+ ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins.+";ifmatches(%CHATCLEAN%,%&rgx1act%);MATCH(%CHATCLEAN%,%&rgx1act%,{&aatct,&bbtct,&cctct});MATCH(%&aatct%%&bbtct%%&cctct%,([0-9]+),{#p});endif;
+&rgx2act="\[Money\] .+ ([0-9]+)\,([0-9]+)\.([0-9]+) Coins.+";ifmatches(%CHATCLEAN%,%&rgx2act%);MATCH(%CHATCLEAN%,%&rgx2act%,{&bbsct,&ccsct});MATCH(%&bbsct%%&ccsct%,([0-9]+),{#p});endif;
+&rgx3act="\[Money\] .+ ([0-9]+)\.([0-9]+) Coins.+";ifmatches(%CHATCLEAN%,%&rgx3act%);MATCH(%CHATCLEAN%,%&rgx3act%,{&ccact});MATCH(%&ccact%,([0-9]+),{#p});endif;
+ifmatches(%&plt%,\+);#saldo=%#saldo%+%#p%;@#t=%@#t%+%#p%;endif;ifmatches(%&plt%,\-);#saldo=%#saldo%-%#p%;@#t=%@#t%-%#p%;endif;
+endif;
+ 
+&rgxmob="^Voce recebeu ([\S]+) Coin por ter ajudado a acabar com o mal $";ifmatches(%CHATCLEAN%,%&rgxmob%,#mob,1);@#t=%@#t%+%#mob%;#saldo=%#saldo%+%#mob%;#mobs=%#mobs%+1;set(filt);endif;
+&rgxpl1="^\[CraftLandia\] Você matou\:.+";ifmatches(%CHATCLEAN%,%&rgxpl1%);#matou=%#matou%+1;set(filt);;endif;
+&rgxpl2="^\[CraftLandia\] Você foi morto por:.+";ifmatches(%CHATCLEAN%,%&rgxpl2%);#morreu=%#morreu%+1;set(filt);endif;
+ 
+&rgx1b="\[Money\] Balanco\: ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx1b%);MATCH(%CHATCLEAN%,%&rgx1b%,{&a,&b,&c});MATCH(%&a%%&b%%&c%,([0-9]+),{@#t});set(filt);endif;
+&rgx2b="\[Money\] Balanco\: ([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx2b%);MATCH(%CHATCLEAN%,%&rgx2b%,{&b,&c});MATCH(%&b%%&c%,([0-9]+),{@#t});set(filt);endif;
+&rgx3b="\[Money\] Balanco\: ([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx3b%);MATCH(%CHATCLEAN%,%&rgx3b%,{&c});MATCH(%&c%,([0-9]+),{@#t});set(filt);endif;
+ 
+ 
+if(filt);unset(filt);
+if(%@#t%>9999999);&rrgx="([1-9]{1}[0-9]{1})([0-9]{3})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&ra,&rb,&rc});&t=%&ra%.%&rb%.%&rc%;else;
+if(%@#t%>999999);&rrgx="([1-9]{1})([0-9]{3})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&ra,&rb,&rc});&t=%&ra%.%&rb%.%&rc%;else;
+if(%@#t%>99999);&rrgx="([1-9]{1}[0-9]{2})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&rb,&rc});&t=%&rb%.%&rc%;else;
+if(%@#t%>9999);&rrgx="([1-9]{1}[0-9]{1})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&rb,&rc});&t=%&rb%.%&rc%;else;
+if(%@#t%>999);&rrgx="([1-9]{1})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&rb,&rc});&t=%&rb%.%&rc%;else;
+if(%@#t%<=999);&rrgx="([0-9]{1,3})";MATCH(%@#t%,%&rrgx%,{&rc});&t=%&rc%;endif;endif;endif;endif;endif;endif;
+if((%#saldo%>9999999)||(%#saldo%<-9999999));&arrgx="([\-]?[1-9]{1}[0-9]{1})([0-9]{3})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&ara,&arb,&arc});&saldo=%&ara%.%&arb%.%&arc%;else;
+if((%#saldo%>999999)||(%#saldo%<-999999));&arrgx="([\-]?[1-9]{1})([0-9]{3})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&ara,&arb,&arc});&saldo=%&ara%.%&arb%.%&arc%;else;
+if((%#saldo%>99999)||(%#saldo%<-99999));&arrgx="([\-]?[1-9]{1}[0-9]{2})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&arb,&arc});&saldo=%&arb%.%&arc%;else;
+if((%#saldo%>9999)||(%#saldo%<-9999));&arrgx="([\-]?[1-9]{1}[0-9]{1})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&arb,&arc});&saldo=%&arb%.%&arc%;else;
+if((%#saldo%>999)||(%#saldo%<-999));&arrgx="([\-]?[1-9]{1})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&arb,&arc});&saldo=%&arb%.%&arc%;else;
+if((%#saldo%<=999)||(%#saldo%>=-999));&arrgx="([\-]?[0-9]{1,3})";MATCH(%#saldo%,%&arrgx%,{&arc});&saldo=%&arc%;endif;endif;endif;endif;endif;endif;
+if(%#saldo%<0);&sgy=;&saldohm="&c :(";else;&sgy=+;&saldohm="&c :)";endif;if(%#saldo%=0);&sgy=;&saldohm="&c '-'";endif;
+setlabel(DD1,&2[&fMoney&2] &2%&t% &fCoins,DD1);
+setlabel(DD2,"&2[&fLucro&2]&f/&2[&fPrejuizo&2] &2%&sgy%%&saldo%%&saldohm%",DD2);
+setlabel(DD4,&6Matou: &2%#matou% &f<---> &6Morreu: &c%#morreu%,DD4);
+endif;
+}$$
