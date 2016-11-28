@@ -1,0 +1,16 @@
+$${
+if(quake);
+ LOG("&l&f&o[&3&l&o%PLAYER%&f&l&o] &f&l&o[&3&l&oQuake&f&l&o] &f&l&o[&4&l&oOFF&f&l&o]");
+  FOV(69);
+   wait(100ms);
+  unset(quake);
+ stop();
+else;
+
+set(quake)
+ LOG("&l&f&o[&3&l&o%PLAYER%&f&l&o] &f&l&o[&3&l&oQuake&f&l&o] &f&l&o[&a&l&oON&f&l&o]");
+  FOV(110);
+  wait(100ms);
+ endif;
+stop();
+}$$
