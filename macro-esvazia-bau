@@ -1,0 +1,19 @@
+$${
+ PROMPT(#tip,$$?,"Qual o tipo? (1 - baú simples / 2 - Baú duplo");
+  key(use);
+   wait(1);
+  if(#tip=1);
+ for(#nslot,0,26);
+slotclick(%#nslot%,l,true);
+ wait(50ms);
+  next;
+   elseif(#tip=2);
+  for(#nslot,0,53);
+ slotclick(%#nslot%,l,true);
+wait(50ms);
+ next;
+  else;
+   log(numero invalido);
+  endif;
+ gui();
+}$$
