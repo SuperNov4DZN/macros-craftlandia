@@ -15,9 +15,11 @@ prompt(&texto2,$$?,"Qual o texto de deve ficar na segunda linha?");
 
 wait(110ms);
  do
+KeyDown(Sneak);
+wait(100ms);
+echo(texto da placa: (%&texto1%,%&texto2%) =3 #super);
 placesign(===========,%&texto1%,%&texto2%,===========,true);
- endif;
-wait(110ms);
+wait(500ms);
 endif;
 log("&f&l&o[&3&l&oAuto Placa&f&l&o]&f&l&o[&c&l&oOFF&f&l&o]");
  unset(placa)
