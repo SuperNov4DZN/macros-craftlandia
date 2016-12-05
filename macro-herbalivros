@@ -1,0 +1,487 @@
+$${
+
+IF(sleepmacro);
+    LOG("&4&l[Macro] &6SleepHerbalismo &4[OFF]");
+    ACHIEVEMENTGET("(Upgrade 1) Macro [OFF]",35:14);
+    UNSET(sleepmacro);
+    STOP();
+ELSE;
+    LOG("&2&l[Macro] &6SleepHerbalismo &2[ON]");
+    SET(sleepmacro);
+    UNSET(reabastecer1);
+    UNSET(reabastecer2);
+    UNSET(@sleepbook);
+    #sleep_inc_livro=0;
+    #sleep_chest=1;
+ENDIF;
+
+
+///////// DELAY INICIAL //////////
+// (Pode ser Alterado por Você) //
+         #sleep_delay=3;
+//////////////////////////////////
+                                
+/////////////// IDS //////////////
+        #sleep_id_livro=387;
+        #sleep_id_cana=338;
+//////////////////////////////////                              
+                                
+//////////////// TABELA DE ERROS ///////////////
+// Erro 401 - Posicionamento indevido.        //
+// Erro 555 - Sethome automatica nao marcada. //
+// Erro 700 - /home sleepcana mal sucedida.   //
+////////////////////////////////////////////////                                
+
+///////////////// TECLAS AÇOES /////////////////
+// Tecla "1" Número de Livros Encontrados.    //
+// Teclas "+" e "-" Muda o Delay da Macro.    //
+////////////////////////////////////////////////
+
+
+CLEARCHAT;
+LOG("&4 [!] &7Iniciando sistemas de segurança &4[!] &7&o#SleepMacros");
+}$$/home sleepherbalismo$${
+UNSET(@sleepteleport);
+#sleep_shild=0;
+    DO; 
+        LOOK(%&sleep_chest_livro%);
+        GETIDREL(0,-1,0,#sleep_id);
+        INC(#sleep_shild,1);
+            IF(%#sleep_shild%>=300);
+                LOG("&4 [!] &7Erro nº401, tentando resolver &4[!] &7&o#SleepMacros");
+                UNSET(@sleepteleport);
+                }$$/home sleepherbalismo$${
+                #sleep_shild=0;
+            ENDIF;
+    UNTIL((@sleepteleport) && (%#sleep_id%=12) || (%#sleep_id%=3) || (%#sleep_id%=2) || (%#sleep_id%=83));
+WAIT(170MS);
+LOOK(NORTH);
+WAIT(1MS);
+    IF((%HITID%=54) || (%HITID%=146));
+        &sleep_chest_cana="NORTH";
+    ENDIF;
+LOOK(EAST);
+WAIT(1MS);
+    IF((%HITID%=54) || (%HITID%=146));
+        &sleep_chest_cana="EAST";
+    ENDIF;
+LOOK(SOUTH);
+WAIT(1MS);
+    IF((%HITID%=54) || (%HITID%=146));
+        &sleep_chest_cana="SOUTH";
+    ENDIF;
+LOOK(WEST);
+WAIT(1MS);
+    IF((%HITID%=54) || (%HITID%=146));
+        &sleep_chest_cana="WEST";
+    ENDIF;
+    IF(%&sleep_chest_cana%="NORTH");
+        &sleep_chest_livro="SOUTH";
+    ELSEIF(%&sleep_chest_cana%="SOUTH");
+        &sleep_chest_livro="NORTH";
+    ELSEIF(%&sleep_chest_cana%="WEST");
+        &sleep_chest_livro="EAST";
+    ELSEIF(%&sleep_chest_cana%="EAST");
+        &sleep_chest_livro="WEST";
+    ENDIF;
+
+CLEARCHAT;
+}$$/g $${
+LOG("&4 [!] &7Marcando sethome automatica &4[!] &7&o#SleepMacros");
+LOOK(%&sleep_chest_livro%);
+GETIDREL(0,-1,0,#sleep_id);
+}$$/sethome sleepherbalismo$${
+UNSET(@sleepsethome);
+#sleep_shild=0;
+    DO;
+        GETIDREL(0,-1,0,#sleep_id);
+        INC(#sleep_shild,1);
+            IF(%#sleep_shild%>=300);
+                CLEARCHAT;
+                LOG("&4 [!] &7Erro nº555, tentando resolver &4[!] &7&o#SleepMacros");
+                UNSET(@sleepsethome);
+                }$$/sethome sleepherbalismo$${
+                #sleep_shild=0;
+            ENDIF;
+    UNTIL((@sleepsethome) && (%#sleep_id%=12) || (%#sleep_id%=3) || (%#sleep_id%=2) || (%#sleep_id%=83));
+
+CLEARCHAT;
+LOG("&2&l[Macro] &6SleepHerbalismo &2[ON]");
+ACHIEVEMENTGET("(Upgrade 1) Macro [ON]",35:5);
+    
+    DO;
+        UNSAFE();
+            DO(1150);
+                    IF(KEY_1);
+                        CLEARCHAT;
+                        LOG("&4 [!] &7Você encontrou &2%#sleep_inc_livro% Livro's &4[!] &7&o#SleepMacros");
+                    ENDIF;
+                    IF(@sleep5s);
+                        CLEARCHAT;
+                        LOG("&4 [!] &7Parando por &25 &2Segundos &4[!] &7&o#SleepMacros")
+                            DO;
+                                LOOK(%&sleep_chest_livro%);
+                                LOOK(+0,+68);
+                            UNTIL(!@sleep5s);
+                    ENDIF;          
+                LOOK(%&sleep_chest_livro%);
+                LOOK(+0,+68);
+                PICK(%#sleep_id_cana%);
+                KEY(USE); 
+                WAIT(%#sleep_delay%MS); 
+                KEY(ATTACK);
+                    IF(((KEY_SUBTRACT) || (KEY_MINUS)) && (!sleep_keysubtract));
+                        SET(sleep_keysubtract);
+                        DEC(#sleep_delay,1);
+                        CLEARCHAT;
+                        LOG("&4 [!] &7Mudado para &2%#sleep_delay%&2 Millisecond's &4[!] &7&o#SleepMacros");
+                    ELSEIF((!KEY_SUBTRACT) && (!KEY_MINUS));
+                        UNSET(sleep_keysubtract);
+                    ENDIF;
+                    IF(((KEY_ADD) || (KEY_EQUALS)) && (!sleep_keyadd));
+                        SET(sleep_keyadd);
+                        INC(#sleep_delay,1);
+                        CLEARCHAT;
+                        LOG("&4 [!] &7Mudado para &2%#sleep_delay%&2 Millisecond's &4[!] &7&o#SleepMacros");
+                    ELSEIF((!KEY_ADD) && (!KEY_EQUALS));
+                        UNSET(sleep_keyadd);
+                    ENDIF;
+            LOOP;
+        ENDUNSAFE();
+        
+            DO;
+                LOOK(%&sleep_chest_livro%);
+                LOOK(+0,+68);
+                KEY(ATTACK);
+                WAIT(7MS);
+            WHILE(%HITID%=83);
+        
+        LOOK(%&sleep_chest_livro%);
+        WAIT(170MS);
+        #sleep_hotbar_cana=0;
+        GUI(INVENTORY);
+        UNSET(reabastecer1);
+            GETSLOTITEM(36,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(36,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(37,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(37,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(38,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(38,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(39,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(39,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(40,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(40,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(41,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(41,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(42,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(42,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(43,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(43,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;
+            GETSLOTITEM(44,#sleep_id,#sleep_stack);
+                IF((%#sleep_id%!=%#sleep_id_cana%) && (%#sleep_id%!=0));
+                    SLOTCLICK(44,L,TRUE);
+                    WAIT(7MS);
+                ELSEIF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_stack%>=30));
+                    INC(#sleep_hotbar_cana,1);
+                ENDIF;  
+            
+            IF(%#sleep_hotbar_cana%<=2);
+                GETSLOT(%#sleep_id_cana%,#sleep_slot);
+                    IF((%#sleep_slot%=-1) || (%#sleep_slot%>=36));
+                        SET(reabastecer1);
+                    ENDIF;
+                    IF(!reabastecer1);
+                            DO(10);
+                                GETSLOT(%#sleep_id_cana%,#sleep_slot);
+                                    IF(%#sleep_slot%<=35);
+                                        SLOTCLICK(%#sleep_slot%,L,TRUE);
+                                    ENDIF;
+                                WAIT(10MS);
+                            LOOP;
+                        CLEARCHAT;
+                        LOG("&4 [!] &7Inventário reorganizado &4[!] &7&o#SleepMacros");
+                    ENDIF;
+            ENDIF;
+            
+            IF(@sleepbook);
+                LOOK(%&sleep_chest_livro%);
+                WAIT(170MS);
+                GUI();
+                }$$/home sleepherbalismo$${
+                UNSET(@sleepteleport);
+                #sleep_shild=0;
+                    DO; 
+                        GETIDREL(0,-1,0,#sleep_id);
+                        INC(#sleep_shild,1);
+                            IF(%#sleep_shild%>=300);
+                                CLEARCHAT;
+                                LOG("&4 [!] &7Erro nº401, tentando resolver &4[!] &7&o#SleepMacros");
+                                UNSET(@sleepteleport);
+                                }$$/home sleepherbalismo$${
+                                #sleep_shild=0;
+                            ENDIF;
+                    UNTIL((@sleepteleport) && (%#sleep_id%=12) || (%#sleep_id%=3) || (%#sleep_id%=2) || (%#sleep_id%=83));
+                WAIT(170MS);
+                CLEARCHAT;
+                LOG("&4 [!] &7Baú de livros número &2[1] &4[!] &7&o#SleepMacros");
+                    DO;
+                        LOOK(%&sleep_chest_livro%);
+                        LOOK(+0,+300);
+                        WAIT(170MS);
+                        KEY(USE);
+                        WAIT(400MS);
+                            IFMATCHES(%GUI%,"CHEST");
+                                SET(chest);
+                            ELSE;
+                                UNSET(chest);
+                            ENDIF;
+                    UNTIL(chest);
+                    FOR(#sleep_slot,54,89);
+                        GETSLOTITEM(%#sleep_slot%,#sleep_id,#sleep_stack);
+                            IF(%#sleep_id%=%#sleep_id_livro%);
+                                SLOTCLICK(%#sleep_slot%,L,TRUE);
+                            ENDIF;
+                        WAIT(1MS);
+                    NEXT;
+                LOOK(%&sleep_chest_livro%);
+                WAIT(70MS);
+                INC(#sleep_inc_livro,1);
+                UNSET(@sleepbook);
+                GUI();
+            ENDIF;
+            
+            IF((reabastecer1) && (!reabastecer2));
+                DO;
+                    LOOK(%&sleep_chest_livro%);
+                    WAIT(170MS);
+                    GUI();                  
+                    UNSET(reposto);
+                    UNSET(stop);
+                    }$$/home sleepherbalismo$${
+                    UNSET(@sleepteleport);
+                    #sleep_shild=0;
+                        DO; 
+                            GETIDREL(0,-1,0,#sleep_id);
+                            INC(#sleep_shild,1);
+                                IF(%#sleep_shild%>=300);
+                                    CLEARCHAT;
+                                    LOG("&4 [!] &7Erro nº401, tentando resolver &4[!] &7&o#SleepMacros");
+                                    UNSET(@sleepteleport);
+                                    }$$/home sleepherbalismo$${
+                                    #sleep_shild=0;
+                                ENDIF;
+                        UNTIL((@sleepteleport) && (%#sleep_id%=12) || (%#sleep_id%=3) || (%#sleep_id%=2) || (%#sleep_id%=83));
+                    WAIT(170MS);
+                    CLEARCHAT;
+                        IF(%#sleep_chest%=1);
+                            LOG("&4 [!] &7Baú de reposição número &2[%#sleep_chest%] &4[!] &7&o#SleepMacros");
+                            LOOK(%&sleep_chest_cana%);
+                            LOOK(-61,+325);
+                        ENDIF;
+                        IF(%#sleep_chest%=2);
+                            LOG("&4 [!] &7Baú de reposição número &2[%#sleep_chest%] &4[!] &7&o#SleepMacros");
+                            LOOK(%&sleep_chest_cana%);
+                            LOOK(+0,+305);
+                        ENDIF;                          
+                        IF(%#sleep_chest%=3);
+                            LOG("&4 [!] &7Baú de reposição número &2[%#sleep_chest%] &4[!] &7&o#SleepMacros");
+                            LOOK(%&sleep_chest_cana%);
+                            LOOK(+61,+325);
+                        ENDIF;                          
+                        IF(%#sleep_chest%=4);
+                            LOG("&4 [!] &7Baú de reposição número &2[%#sleep_chest%] &4[!] &7&o#SleepMacros");
+                            LOOK(%&sleep_chest_cana%);
+                            LOOK(-61,+0);
+                        ENDIF;  
+                        IF(%#sleep_chest%=5);
+                            LOG("&4 [!] &7Baú de reposição número &2[%#sleep_chest%] &4[!] &7&o#SleepMacros");
+                            LOOK(%&sleep_chest_cana%);
+                            LOOK(+0,+0);
+                        ENDIF;  
+                        IF(%#sleep_chest%=6);
+                            LOG("&4 [!] &7Baú de reposição número &2[%#sleep_chest%] &4[!] &7&o#SleepMacros");
+                            LOOK(%&sleep_chest_cana%);
+                            LOOK(+61,+0);
+                        ENDIF;  
+                        DO;
+                            WAIT(170MS);
+                                IF(%#sleep_chest%=1);
+                                    LOOK(%&sleep_chest_cana%);
+                                    LOOK(-61,+325);
+                                ENDIF;
+                                IF(%#sleep_chest%=2);
+                                    LOOK(%&sleep_chest_cana%);
+                                    LOOK(+0,+305);
+                                ENDIF;                          
+                                IF(%#sleep_chest%=3);
+                                    LOOK(%&sleep_chest_cana%);
+                                    LOOK(+61,+325);
+                                ENDIF;                          
+                                IF(%#sleep_chest%=4);
+                                    LOOK(%&sleep_chest_cana%);
+                                    LOOK(-61,+0);
+                                ENDIF;  
+                                IF(%#sleep_chest%=5);
+                                    LOOK(%&sleep_chest_cana%);
+                                    LOOK(+0,+0);
+                                ENDIF;  
+                                IF(%#sleep_chest%=6);
+                                    LOOK(%&sleep_chest_cana%);
+                                    LOOK(+61,+0);
+                                ENDIF;      
+                            KEY(USE);
+                            WAIT(600MS);
+                                IFMATCHES(%GUI%,"CHEST");
+                                    SET(chest);
+                                ELSE;
+                                    UNSET(chest);
+                                ENDIF;
+                        UNTIL(chest);
+                        DO;
+                            #sleep_inventory_cana=0;
+                                FOR(#sleep_slot,54,89);
+                                    GETSLOTITEM(%#sleep_slot%,#sleep_id,#sleep_stack);
+                                        IF(%#sleep_id%=%#sleep_id_cana%);
+                                            INC(#sleep_inventory_cana,1);
+                                        ENDIF;
+                                NEXT;
+                                IF(%#sleep_inventory_cana%<=25);
+                                    DO(4);
+                                        GETSLOT(%#sleep_id_cana%,#sleep_slot);
+                                        GETSLOTITEM(%#sleep_slot%,#sleep_id,#sleep_stack);
+                                            IF((%#sleep_id%=%#sleep_id_cana%) && (%#sleep_slot%<54));
+                                                SLOTCLICK(%#sleep_slot%,L,TRUE);
+                                            ENDIF;
+                                        WAIT(10MS);
+                                    LOOP;
+                                ELSEIF(%#sleep_inventory_cana%>25);
+                                    LOOK(%&sleep_chest_livro%);
+                                    WAIT(110MS);
+                                    SET(reposto);
+                                    SET(stop);
+                                ENDIF;
+                            GETSLOT(%#sleep_id_cana%,#sleep_slot);
+                                IF((%#sleep_chest%=6) && (%#sleep_slot%=-1) || (%#sleep_slot%>=54));
+                                    CLEARCHAT;
+                                    LOG("&4 [!] &7Habilitado reabastecimento por compra &4[!] &7&o#SleepMacros");
+                                    LOOK(%&sleep_chest_livro%);
+                                    WAIT(110MS);
+                                    SET(reabastecer2);
+                                    SET(reposto);
+                                    SET(stop);
+                                ELSEIF((%#sleep_slot%=-1) || (%#sleep_slot%>=54));
+                                    INC(#sleep_chest,1);
+                                    SET(reposto);
+                                ENDIF;;                         
+                        UNTIL(reposto); 
+                UNTIL(stop);
+            ENDIF;
+            
+            IF(reabastecer2);
+                UNSET(reposto);
+                UNSET(stop);
+                    DO;
+                        LOOK(%&sleep_chest_livro%);
+                        WAIT(170MS);
+                        GUI();                  
+                        UNSET(reposto);
+                        UNSET(stop);
+                        }$$/home sleepcana$${
+                        UNSET(@sleepteleport);
+                        #sleep_shild=0;
+                            DO; 
+                                GETIDREL(0,-1,0,#sleep_id);
+                                INC(#sleep_shild,1);
+                                    IF(%#sleep_shild%>=300);
+                                        CLEARCHAT;
+                                        LOG("&4 [!] &7Erro nº700, tentando resolver &4[!] &7&o#SleepMacros");
+                                        UNSET(@sleepteleport);
+                                        }$$/home sleepcana$${
+                                        #sleep_shild=0;
+                                    ENDIF;
+                            UNTIL((@sleepteleport) && (%HITID%=68) && (%#sleep_id%!=12) || (%#sleep_id%!=3) || (%#sleep_id%!=2) || (%#sleep_id%!=83));
+                        WAIT(170MS);
+                        GUI(INVENTORY);
+                            DO;
+                                #sleep_inventory_cana=0;
+                                    FOR(#sleep_slot,9,44);
+                                        GETSLOTITEM(%#sleep_slot%,#sleep_id,#sleep_stack);
+                                            IF(%#sleep_id%=%#sleep_id_cana%);
+                                                INC(#sleep_inventory_cana,1);
+                                            ENDIF;
+                                    NEXT;
+                                    IF(%#sleep_inventory_cana%<=25);
+                                        DO(4);
+                                                IF((%HITID%=68) && (%HIT%!="PLAYER"));
+                                                    KEY(USE);
+                                                ENDIF;
+                                            WAIT(170MS);
+                                            GUI(INVENTORY);
+                                            WAIT(170MS);
+                                        LOOP;
+                                    ELSEIF(%#sleep_inventory_cana%>25);
+                                        SET(reposto);
+                                        SET(stop);
+                                    ENDIF;                          
+                            UNTIL(reposto);             
+                    UNTIL(stop);
+            ENDIF;          
+            
+        GUI();
+        }$$/home sleepherbalismo$${
+        UNSET(@sleepteleport);
+        #sleep_shild=0;
+            DO; 
+                GETIDREL(0,-1,0,#sleep_id);
+                INC(#sleep_shild,1);
+                    IF(%#sleep_shild%>=300);
+                        CLEARCHAT;
+                        LOG("&4 [!] &7Erro nº401, tentando resolver &4[!] &7&o#SleepMacros");
+                        UNSET(@sleepteleport);
+                        }$$/home sleepherbalismo$${
+                        #sleep_shild=0;
+                    ENDIF;
+            UNTIL((@sleepteleport) && (%#sleep_id%=12) || (%#sleep_id%=3) || (%#sleep_id%=2) || (%#sleep_id%=83));
+    LOOP;
+
+}$$ 
