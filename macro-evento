@@ -2,21 +2,18 @@
 $${
 if(@teste);
  log("&f&l&o[&3&l&oTeste&f&l&o]&f&l&o[&c&l&oOFF&f&l&o]");
+  echo("[!] fim do evento :( [!]");
  unset(@teste);
 stop()
-}$$
-[!] fim do evento :( [!]
-$${
 else;
  log("&f&l&o[&3&l&oTeste&f&l&o]&f&l&o[&a&l&oON&f&l&o]");
   set(@teste);
-   achievementget("[!] Evento [!] - Super,399");
-  wait(100ms);
- endif;
-}$$
-[!] evento começando :) [!]
-$${
+   achievementget([!] Evento [!] - Super,399:14);
+   wait(100ms);
+  echo("[!] evento começando :) [!]");
+ wait(1t);
 endif;
+loop;
 }$$
 ///Macro///
 
