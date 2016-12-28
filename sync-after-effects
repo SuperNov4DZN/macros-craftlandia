@@ -1,0 +1,32 @@
+【＝◈︿◈＝】
+FX>
+Transform
+S_Shake
+CC Light Burst 2.5
+
+FX Configs>
+
+*Transform-
+Scale-120 KeyFrame ■
+
+*S_Shake
+Amplitude-1,500 KeyFrame ■
+Frequency-4,00
+Motion Blur ■
+
+*CC Light Burst 2.5
+Intensity-100,0 KeyFrame ■
+Ray Length-50,0 KeyFrame ■
+
+FX 2>
+Transform
+CC Radial Blur
+
+FX 2 Configs>
+
+*Transform
+Scale-115 KeyFrame ■
+
+*CC Radial Blur
+Ammout-10 KeyFrame ■
+【＝◈︿◈＝】
