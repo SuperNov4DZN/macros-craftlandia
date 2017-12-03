@@ -1,0 +1,2284 @@
+MACROS CRAFTLANDIA 1.5.2
+
+PESCA +500
+==================================================
+
+$${
+if(x);
+log("&3Macro Pesca Organizado &4(OFF)");
+unset(x);
+stop();
+else(x);
+log("&3Macro Pesca Organizado &a(ON)");
+set(x);
+endif;
+
+ifmatches(%DIRECTION%,N);&dir=NORTH;endif;
+ifmatches(%DIRECTION%,S);&dir=SOUTH;endif;
+ifmatches(%DIRECTION%,E);&dir=EAST;endif;
+ifmatches(%DIRECTION%,W);&dir=WEST;endif;
+
+gui(INVENTORY);
+
+IF(%DURABILITY% < 15);
+gui();
+look(,90);
+key(use);
+wait(1);
+key(attack);
+wait(1);
+gui(inventory);
+endif;
+
+do();
+GUI(INVENTORY);
+do(100);
+IF(%DURABILITY% < 15);
+gui();
+look(,90);
+key(use);
+wait(1);
+gui(inventory);
+endif;
+look(%&dir%);
+look(,-90);
+pick(346);
+key(use);
+wait(1ms);
+loop;
+
+//1 VEREficaçao
+#s64=0;#sinc=0;#svazio=0;
+
+for(#nslot,9,35);
+getslotitem(%#nslot%,#id,#stack);
+if(%#stack%!=0);
+INC(#sinc,1);
+endif;
+else;
+INC(#svazio,1);
+endif;
+next;
+
+if(%#sinc% = 27);
+
+look(%&dir%);look(,0);
+ARRAYSIZE(#li,#size);#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#li,#tempvar);
+NEXT;
+
+#tempvar = 0;
+#li[] = 306;
+#li[] = 307;
+#li[] = 308;
+#li[] = 309;
+#li[] = 314;
+#li[] = 315;
+#li[] = 316;
+#li[] = 317;
+#li[] = 306;
+#li[] = 307;
+#li[] = 308;
+#li[] = 309;
+#li[] = 292;
+#li[] = 283;
+#li[] = 284;
+#li[] = 285;
+#li[] = 286;
+#li[] = 294;
+#li[] = 292;
+#li[] = 267;
+#li[] = 256;
+#li[] = 257;
+#li[] = 258;
+#li[] = 351;
+#li[] =298;
+#li[] =299;
+#li[] =300;
+#li[] =301;
+#li[] =290;
+#li[] =291;
+#li[] =275;
+#li[] =274;
+#li[] =273;
+#li[] =272;
+#li[] =271;
+#li[] =270;
+#li[] =269;
+#li[] =268;
+#li[] =267;
+#li[] =256;
+#li[] =257;
+#li[] =258;
+#li[] =2254;
+#li[] =2255;
+#li[] =2256;
+#li[] =2257;
+#li[] =2258;
+#li[] =2259;
+#li[] =2260;
+#li[] =2261;
+#li[] =2262;
+#li[] =2263;
+#li[] =2264;
+#li[] =2265;
+#li[] =2266;
+#li[] =2267;
+
+
+log("&6limpando inventario .");
+for(#slotn,9,44);
+GETSLOTITEM(%#slotn%,#id,#stack);INDEXOF(#li,#index,%#id%);
+IF((#index != -1) && (%#id% != 0));
+SLOTCLICK(%#slotn%);SLOTCLICK(-999);WAIT(50ms);
+ENDIF;
+endif;
+next;
+endif;
+
+//1 VEREficaçao
+#s64=0;#sinc=0;#svazio=0;
+
+for(#nslot,9,35);
+getslotitem(%#nslot%,#id,#stack);
+if(%#stack%!=0);
+INC(#sinc,1);
+endif;
+else;
+INC(#svazio,1);
+endif;
+next;
+
+if(%#sinc% >= 27);
+//==================================== baus sets
+wait(1);
+}$$/home 10$${
+wait(8);
+log("&6Guardando itens &4SETS .");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 310;
+#wl[] = 311;
+#wl[] = 312;
+#wl[] = 313;
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 10$${
+endif;
+//================================================ baus peixe
+wait(1);
+}$$/home 11$${
+wait(8);
+log("&6Guardando itens &4PEIXE.");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 349;
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 11$${
+endif;
+//================================================ baus minerios
+wait(1);
+}$$/home 13$${
+wait(8);
+log("&6Guardando itens &4MINERIOS .");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 264;
+#wl[] = 266;
+#wl[] = 369;
+#wl[] = 265;
+#wl[] = 370;
+#wl[] = 387;
+
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 13$${
+endif;
+//================================================ baus FERRAMENTA
+wait(1);
+}$$/home 14$${
+wait(8);
+log("&6Guardando itens &4FERRAMENTAS .");
+key(use);
+wait(3);
+ARRAYSIZE(#wl,#size);
+#size = #size - 1;
+FOR(#y,0,%#size%);
+POP(#wl,#tempvar);
+NEXT;
+
+#wl[] = 279;
+#wl[] = 293;
+#wl[] = 278;
+#wl[] = 277;
+#wl[] = 276;
+
+FOR(#i,54,90);
+GETSLOTITEM(%#i%,#item);
+INDEXOF(#wl,#index,%#item%);
+IF((#index != -1) && (%#item% != 0));
+SLOTCLICK(%#i%,l,true);
+WAIT(50ms);ENDIF;NEXT;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);
+gui();
+#posx=%XPOS%;
+#posz=%ZPOS%;
+keydown(RIGHT);
+keydown(SNEAK);
+do;
+wait(10ms);
+until((%XPOS%=%#posx%+1)|(%XPOS%=%#posx%-1)|(%ZPOS%=%#posz%+1)|(%ZPOS%=%#posz%-1));
+wait(150ms);
+keyup(SNEAK);
+keyup(RIGHT);
+wait(1);
+}$$/sethome 14$${
+endif;
+//================================================ verifica bau cheio
+until(%#stack%=0);
+log("&6itens guardandos .");
+}$$/home pesqueiro$${wait(8);
+endif;endif;loop;
+}$$
+
+==================================================
+
+
+POTIONS
+==================================================
+
+$${
+if(potions);
+unset(potions);
+log("&6[yPotions] &4Desligado");
+stop();
+else;
+set(potions);
+log("&6[yPotions] &aLigado");
+endif;
+}$$$${
+&ypots_dir=%DIRECTION%;
+ifmatches(%DIRECTION%,N);
+&ypots_dir=NORTH;
+endif;
+ifmatches(%DIRECTION%,S);
+&ypots_dir=SOUTH;
+endif;
+ifmatches(%DIRECTION%,E);
+&ypots_dir=EAST;
+endif;
+ifmatches(%DIRECTION%,W);
+&ypots_dir=WEST;
+endif;
+
+&ypots_incrementos="^348$|^331$";
+&ypots_ingredientes="^370$|^377$|^375$|^378$|^396$|^382$|^353$";
+#ypots_frascos=1;
+wait(1);
+gui();
+getslotitem(2,#id);
+ifmatches(%#id%,%&ypots_incrementos%);
+&ypots_incrementada=true;
+else;
+&ypots_incrementada=false;
+endif;
+getslotitem(3,#id);
+if(%#id%=289);
+&ypots_polvora=true;
+else;
+&ypots_polvora=false;
+endif;
+
+achievementget(AFK =),373,8197);
+do;
+
+//===================================================fungo====================================================//
+do(28);
+look(%&ypots_dir%);
+look(,65);
+slot(9);
+key(use);
+wait(120ms);
+loop;
+wait(1);
+
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,4,6);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,7,9);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,10,12);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,13,15);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,16,18);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,19,21);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,22,24);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,25,27);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,28,30);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+do(28);
+look(%&ypots_dir%);
+look(,65);
+slot(9);
+key(use);
+wait(120ms);
+loop;
+wait(1);
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,4,6);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,7,9);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,10,12);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,13,15);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,16,18);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,19,21);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,22,24);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,25,27);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,28,30);slotclick(%#slot%,l,true);wait(120ms);next;
+slotclick(38,l,false);wait(80ms);slotclick(38,r,false);wait(80ms);slotclick(38,l,true);wait(80ms);slotclick(38,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//===================================================ingrediente================================================//
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(31,l,false);wait(80ms);slotclick(31,r,false);wait(80ms);slotclick(31,l,true);wait(80ms);slotclick(31,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+
+//===================================================incremento================================================//
+ifmatches(%&ypots_incrementada%,true);
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(32,l,false);wait(80ms);slotclick(32,r,false);wait(80ms);slotclick(32,l,true);wait(80ms);slotclick(32,l,false);wait(80ms);
+wait(500ms);gui();wait(800ms);
+endif;
+
+//===================================================pólvora================================================//
+ifmatches(%&ypots_polvora%,true);
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+slotclick(33,l,false);wait(80ms);slotclick(33,r,false);wait(80ms);slotclick(33,l,true);wait(80ms);slotclick(33,l,false);wait(80ms);
+wait(500ms);gui();
+endif;
+
+//=========================pegar pot=================//
+//=============mesa 1===============
+look(%&ypots_dir%);look(-116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 2===============
+look(%&ypots_dir%);look(-116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 3===============
+look(%&ypots_dir%);look(-116,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 4===============
+look(%&ypots_dir%);look(-90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 5===============
+look(%&ypots_dir%);look(-90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 6===============
+look(%&ypots_dir%);look(-90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 7===============
+look(%&ypots_dir%);look(-60,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 8===============
+look(%&ypots_dir%);look(-60,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 9===============
+look(%&ypots_dir%);look(-60,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);
+gui();
+
+}$$/home ypots_baus$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+wait(250ms);
+for(#slot,54,80);
+slotclick(%#slot%,l,true);
+wait(120ms);
+next;
+getslotitem(53,#id);
+if(%#id%!=0);
+gui();
+wait(100ms);
+keydown(sneak);
+keydown(right);
+wait(730ms);
+keyup(right);
+keyup(sneak);
+wait(500ms);
+}$$/sethome ypots_baus$${
+wait(500ms);
+if((%HITID%!=54)&&(%HITID%!=146));
+log("&6[yPotions] &4Desligado");
+unset(potions);
+stop();
+endif;
+else;
+gui();
+endif;
+wait(500ms);
+}$$/home$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+//=============mesa 10===============
+look(%&ypots_dir%);look(+64,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 11===============
+look(%&ypots_dir%);look(+64,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 12===============
+look(%&ypots_dir%);look(+64,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 13===============
+look(%&ypots_dir%);look(+90,35);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 14===============
+look(%&ypots_dir%);look(+90,14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 15===============
+look(%&ypots_dir%);look(+90,-14);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 16===============
+look(%&ypots_dir%);look(+116,33);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 17===============
+look(%&ypots_dir%);look(+116,12);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);gui();wait(800ms);
+
+//=============mesa 18===============
+look(%&ypots_dir%);look(+116,-10);wait(100ms);do;key(use);wait(1800ms);ifmatches(%GUI%,BREWINGSTAND);break;endif;loop;
+for(#slot,0,2);slotclick(%#slot%,l,true);wait(100ms);next;
+wait(500ms);
+gui();
+}$$/home ypots_baus$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+wait(250ms);
+for(#slot,54,80);
+slotclick(%#slot%,l,true);
+wait(120ms);
+next;
+getslotitem(53,#id);
+if(%#id%!=0);
+gui();
+wait(100ms);
+keydown(sneak);
+keydown(right);
+wait(730ms);
+keyup(right);
+keyup(sneak);
+wait(500ms);
+}$$/sethome ypots_baus$${
+wait(500ms);
+if((%HITID%!=54)&&(%HITID%!=146));
+log("&6[yPotions] &4Desligado");
+unset(potions);
+stop();
+endif;
+else;
+gui();
+endif;
+wait(500ms);
+}$$/home$${
+wait(7);
+keydown(jump);
+wait(1);
+keyup(jump);
+wait(500ms);
+if(%#ypots_frascos%=1);look(%&ypots_dir%);look(+145,32);wait(100ms);endif;
+if(%#ypots_frascos%=2);look(%&ypots_dir%);look(-180,38);wait(100ms);endif;
+if(%#ypots_frascos%=3);look(%&ypots_dir%);look(-145,32);wait(100ms);endif;
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=374);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=374);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+getslotitem(53,#id);
+if(%#id%=0);
+inc(#ypots_frascos);
+endif;
+gui();
+
+wait(500ms);
+getslotitem(1,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(-180,-30);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_ingredientes%);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_ingredientes%);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+
+ifmatches(%&ypots_incrementada%,true);
+wait(500ms);
+getslotitem(2,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(-148,5);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_incrementos%);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+ifmatches(%#id%,%&ypots_incrementos%);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+endif;
+
+ifmatches(%&ypots_polvora%,true);
+wait(500ms);
+getslotitem(3,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(+148,5);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=289);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=289);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+endif;
+
+wait(500ms);
+getslotitem(8,#id,#stack);
+if(%#stack%<=18);
+look(%&ypots_dir%);
+look(-180,5);
+wait(100ms);
+do;
+key(use);
+wait(1500ms);
+ifmatches(%GUI%,GUICHEST);
+break;
+endif;
+loop;
+for(#slot,0,53);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=372);
+if(%#stack%=64);
+slotclick(%#slot%,l,true);
+break;
+endif;
+endif;
+next;
+wait(500ms);
+for(#slot,54,80);
+getslotitem(%#slot%,#id,#stack);
+if(%#id%=372);
+slotclick(%#slot%,l,true);
+wait(100ms);
+endif;
+next;
+gui();
+endif;
+loop;
+}$$
+
+==================================================
+
+
+BLAZE
+==================================================
+
+$${
+
+                           if(sleepblaze);
+
+                              log("&4&l[MACRO] &6SLEE'PESCA Blaze &4[OFF]");
+                              ACHIEVEMENTGET("(Upgrade 0) Macro [OFF]",35:14);
+                                                 log("&0-----------------------------------")
+                                                 log("&a-> &6Você matou:")
+                                                 log("&9[%#sleepblazenumber%] &8Blaze's &4!!")
+                                                 log("")
+                                                 log("&a-> &6Aproximadamente (Em media):")
+                                                 log("&9[%#sleepblazerodnumber%] &8BlazeRod's &4!!")
+                                                 log("&9[%#sleepblazerodmoney%] &8Coin's &4!!")
+                                                 log("&0-----------------------------------")
+                                                 log( );
+                              unset(sleepblaze);
+                              unset(sleepcheck);
+                              unset(@sleeplook);
+                              keyup(forward);
+                              keyup(sneak);
+                              stop();
+                           else;
+                              log("&2&l[MACRO] &6SLEE'PESCA Blaze &2[ON]");
+                              ACHIEVEMENTGET("(Upgrade 0) Macro [ON]",35:5);
+                              set(sleepblaze);
+                              set(sleepcheck);
+                              set(sleeplook);
+                              endif;
+
+IFMATCHES(%DIRECTION%,N);&sleephitdirection=NORTH;endif;
+IFMATCHES(%DIRECTION%,S);&sleephitdirection=SOUTH;endif;
+IFMATCHES(%DIRECTION%,W);&sleephitdirection=WEST;endif;
+IFMATCHES(%DIRECTION%,E);&sleephitdirection=EAST;endif;
+
+#sleepchest=1;
+#sleepchest2=1;
+#sleepitem=346;
+#sleepitemdur=19;
+#sleepitemrepair=287;
+#sleepchecktime=1000;
+#sleepusespeed=4;
+#sleepitemdrop=369;
+#sleeplackcount=0;
+#sleepblazenumber=0;
+#sleepblazerodnumber=0;
+#sleepblazerodmoney=0;
+
+             log("");
+             log("&8-> &8Veja como deixar seu inventário:");
+             log("&7http://i.imgur.com/iWvpvqx.png &8!!");
+             log("&8-> &8Veja como deve ficar a trap:");
+             log("&7http://i.imgur.com/9h3fxs0.png &8!!");
+             log("");
+
+unset(@sleeplack);
+if(sleeplook);
+look(%&sleephitdirection%);
+look(,-32);
+endif;
+                                                        do;
+                                                        do(%#sleepchecktime%);
+                                                        do(%#sleepchecktime%);
+                     if(@sleeplack);
+                        inc(#sleeplackcount,1);
+                            unset(@sleeplack);
+                     endif;
+                     if(%#sleeplackcount%>=3);
+log("");
+log("&8-> &7Impossivel Reparar !!");
+log("&8-> &7Resolvendo...");
+log("");
+                              keyup(forward);
+                              keyup(sneak);
+                                              }$$/home sleepblazebaus$${wait(7);}$$/home sleepblazebaus$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+
+                                  DO;
+                                  if(%#sleepchest2%=1);gui();wait(300ms);look(180,288);endif;
+                                  if(%#sleepchest2%=2);gui();wait(300ms);look(180,307);endif;
+                                  if(%#sleepchest2%=3);gui();wait(300ms);look(180,10);endif;
+                                  if(%#sleepchest2%=4);gui();wait(300ms);look(180,63);endif;
+                                  if(%#sleepchest2%=5);gui();wait(300ms);look(270,288);endif;
+                                  if(%#sleepchest2%=6);gui();wait(300ms);look(270,307);endif;
+                                  if(%#sleepchest2%=7);gui();wait(300ms);look(270,10);endif;
+                                  if(%#sleepchest2%=8);gui();wait(300ms);look(270,63);endif;
+                                  if(%#sleepchest2%=9);gui();wait(300ms);look(358,288);endif;
+                                  if(%#sleepchest2%=10);gui();wait(300ms);look(358,307);endif;
+                                  if(%#sleepchest2%=11);gui();wait(300ms);look(358,12);endif;
+                                  if(%#sleepchest2%=12);gui();wait(300ms);look(358,63);endif;
+                                  if(%#sleepchest2%=13);gui();wait(300ms);look(90,288);endif;
+                                  if(%#sleepchest2%=14);gui();wait(300ms);look(90,307);endif;
+                                  if(%#sleepchest2%=15);gui();wait(300ms);look(90,12);endif;
+                                  if(%#sleepchest2%=16);gui();wait(300ms);look(90,63);endif;
+wait(600ms);
+key(use);
+wait(5);
+           for(#slotn,54,89);
+           getslotitem(%#slotn%,#id,#stack);
+           if((%#id%=%#sleepitem%) || (%#id%=%#sleepitemrepair%));
+           else;
+           slotclick(%#slotn%,l,true);
+           wait(185ms);
+           endif;
+           next;
+           wait(185ms);
+           getslotitem(53,#id,#stack);
+           wait(185ms);
+           if(%#stack%!=0);
+           inc(#sleepchest2);
+           endif;
+           if(%#bau%=13);
+           unset(sleepcheck);
+           else;
+           endif;
+           until(%#stack%=0);
+           gui();
+           wait(600ms);
+                                              }$$/home sleeplinha$${wait(7);}$$/home sleeplinha$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+
+IFMATCHES(%DIRECTION%,N);&sleepshopdirection=NORTH;endif;
+IFMATCHES(%DIRECTION%,S);&sleepshopdirection=SOUTH;endif;
+IFMATCHES(%DIRECTION%,W);&sleepshopdirection=WEST;endif;
+IFMATCHES(%DIRECTION%,E);&sleepshopdirection=EAST;endif;
+
+                        gui(inventory);
+                        wait(3);
+                        #id=%#sleepitemrepair%;
+                        do;
+                        getslotitem(14,#id,#stack);
+                        wait(185ms);
+                        if(%#id%=%#sleepitemrepair%);
+                        #tem=1;
+                        else;
+                        #tem=0;
+                        endif;
+                        gui(inventory);
+                        wait(15ms);
+
+                                           if(%HIT%="PLAYER");
+                                              look(%&sleepshopdirection%);
+                                              }$$[#SLEEPMACROS] porfavor, saia da frente da placa, isso pode causar ban !!$${
+                                              gui(inventory);
+                                              keydown(back);
+                                              wait(500ms);
+                                              keyup(back);
+                                              wait(17);
+                                                              if(%HIT%="PLAYER");
+                                                                 }$$[#SLEEPMACROS] caso alguem tire uma print de seu ato, voce sera ser banido !!$${
+                                                              endif;
+                                              wait(17);
+                                                              if(%HIT%="PLAYER");
+                                                                 }$$[#SLEEPMACROS] printscreen automatico em 10 segundos, porfavor saia !!$${
+                                                              endif;
+                                              wait(17);
+                                                              if(%HIT%="PLAYER");
+                                                                 }$$[#SLEEPMACROS] printscreen salvo, infelizmente vou denuncia-lo !!$${
+                                                                 press(f2);
+                                                              endif;
+
+                                              }$$/home sleeplinha$${
+                                              wait(1000ms);     
+                                              gui(inventory);
+                                              wait(4);
+                                           endif;
+
+                        key(use);
+                        wait(300ms);
+                        until(%#tem%=1);
+                        wait(500ms);
+                        gui();
+                        wait(600ms);
+                        unset(@sleeplack);
+                        #sleeplackcount=0;
+                                              }$$/home sleepblaze$${wait(7);}$$/home sleepblaze$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+log("");
+log("&8-> &7Linhas Repostas !!");
+log("&8-> &7Continuando...");
+log("");
+
+      endif;
+      endif;
+      endif;
+                     keydown(forward);
+                     keydown(sneak);
+                     pick(%#sleepitem%);
+
+if(%DURABILITY%<%#sleepitemdur%);
+   look(%&sleephitdirection%);
+   look(,72);
+   pick(%#sleepitem%);
+   key(use);
+   wait(900ms);
+endif;
+
+if(%HIT%="ENTITY");
+   key(use);
+   wait(%#sleepusespeed%ms);
+endif;
+
+if(%DURABILITY%<%#sleepitemdur%);
+   look(%&sleephitdirection%);
+   look(,72);
+   pick(%#sleepitem%);
+   key(use);
+   wait(900ms);
+endif;
+
+                     if(@sleepkill);
+                        inc(#sleepblazenumber,1);
+                        inc(#sleepblazerodnumber,3);
+                        inc(#sleepblazerodmoney,665);
+
+                                                 log("&0-----------------------------------")
+                                                 log("&a-> &6Você matou:")
+                                                 log("&9[%#sleepblazenumber%] &8Blaze's &4!!")
+                                                 log("")
+                                                 log("&a-> &6Aproximadamente (Em media):")
+                                                 log("&9[%#sleepblazerodnumber%] &8BlazeRod's &4!!")
+                                                 log("&9[%#sleepblazerodmoney%] &8Coin's &4!!")
+                                                 log("&0-----------------------------------")
+                                                 log( );
+
+                            unset(@sleepkill);
+                     endif;
+
+                     look(%&sleephitdirection%);
+                     look(,-32);
+                     loop;
+
+           if(sleepcheck);
+log("");
+log("&8-> &7Verificando Inventário !!");
+log("&8-> &7Aguardando...");
+log("");
+           #sleeplackcount=0;
+           gui(inventory);
+           wait(600ms);
+           for(#slot,36,44);
+           getslotitem(%#slot%,#id,#stack);
+           if((%#id%=%#sleepitemrepair%) || (%#id%=%#sleepitem%));
+           next;
+           else;
+           slotclick(%#slot%,l,true);
+           wait(185ms);
+           endif;
+           next;
+           getslotitem(33,#id,#stack);
+           if(%#stack%=0);
+           gui();
+log("");
+log("&8-> &7Nada Anormal !!");
+log("&8-> &7Continuando...");
+log("");
+           else;
+           gui();
+log("");
+log("&8-> &7Inventário Cheio !!");
+log("&8-> &7Resolvendo...");
+log("");
+
+keyup(forward);
+keyup(sneak);
+
+
+                                              }$$/home sleepblazebaus$${wait(7);}$$/home sleepblazebaus$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+                                  DO;
+                                  if(%#sleepchest%=1);gui();WAIT(300ms);look(180,288);endif;
+                                  if(%#sleepchest%=2);gui();wait(300ms);look(180,307);endif;
+                                  if(%#sleepchest%=3);gui();wait(300ms);look(180,10);endif;
+                                  if(%#sleepchest%=4);gui();wait(300ms);look(180,63);endif;
+                                  if(%#sleepchest%=5);gui();wait(300ms);look(270,288);endif;
+                                  if(%#sleepchest%=6);gui();wait(300ms);look(270,307);endif;
+                                  if(%#sleepchest%=7);gui();wait(300ms);look(270,10);endif;
+                                  if(%#sleepchest%=8);gui();wait(300ms);look(270,63);endif;
+                                  if(%#sleepchest%=9);gui();wait(300ms);look(358,288);endif;
+                                  if(%#sleepchest%=10);gui();wait(300ms);look(358,307);endif;
+                                  if(%#sleepchest%=11);gui();wait(300ms);look(358,12);endif;
+                                  if(%#sleepchest%=12);gui();wait(300ms);look(358,63);endif;
+                                  if(%#sleepchest%=13);gui();wait(300ms);look(90,288);endif;
+                                  if(%#sleepchest%=14);gui();wait(300ms);look(90,307);endif;
+                                  if(%#sleepchest%=15);gui();wait(300ms);look(90,12);endif;
+                                  if(%#sleepchest%=16);gui();wait(300ms);look(90,63);endif;
+wait(600ms);
+key(use);
+wait(5);
+
+           for(#slotn,54,89);
+           getslotitem(%#slotn%,#id,#stack);
+           if((%#id%=%#sleepitem%) || (%#id%=%#sleepitemrepair%));
+           else;
+           slotclick(%#slotn%,l,true);
+           wait(185ms);
+           endif;
+           next;
+           wait(185ms);
+           getslotitem(53,#id,#stack);
+           wait(185ms);
+           if(%#stack%!=0);
+           inc(#sleepchest);
+           endif;
+           if(%#bau%=13);
+           unset(sleepcheck);
+           else;
+           endif;
+           until(%#stack%=0);
+                                              }$$/home sleepblaze$${wait(7);}$$/home sleepblaze$${wait(7);
+                                              keydown(jump);wait(1);keyup(jump);wait(1);
+log("");
+log("&8-> &7BlazeRods Guardados !!");
+log("&8-> &7Continuando...");
+log("");
+
+                       endif;
+                       endif;
+            gui();
+            loop;
+endif;
+endif;
+endif;
+
+}$$
+
+
+==================================================
+
+
+ON CHATS
+==================================================
+
+$${
+if(@homejumps);
+        ifmatches(%CHAT%,"Rolou perfeitamente");
+            }$$/home acro$${
+        endif;
+    endif;
+}$$
+
+$${     
+    
+IFMATCHES("%CHATCLEAN%","^» CraftLandia [\S\s]+ \(www.craftlandia.com.br\)$");
+    IF(player_connected);
+        UNSET(player_connected);
+        UNSET(foreach);
+            DO(15);
+                SETLABEL("PC","&e[PC] &aCriado por &a&oSLEEP&a.");
+                WAIT(1MS);
+                SETLABEL("PC","&e[PC] &aCriado por SLEEP.");
+                WAIT(1MS);
+            LOOP;
+        SET(player_connected);
+    ELSE;
+        SETLABEL("PC","");
+        UNSET(foreach);
+        UNSET(player_connected);
+    ENDIF;
+ENDIF;
+IFMATCHES("%CHATCLEAN%","^\[[GL]\] [\s\S]*%PLAYER%: ([\s\S]*)$");
+    MATCH("%CHATCLEAN%","^\[[GL]\] ([\s\S]*)%PLAYER%: ([\s\S]*)$",{&chatinfo,&chatmsg});
+    IFMATCHES("%&chatinfo%",":");
+    ELSE;
+        IFMATCHES("%&chatmsg%","^sleep pc (on|off|list)$");
+            MATCH("%&chatmsg%","^sleep pc (on|off|list)$",{&status});
+            IF((%&status%="on")&&(!player_connected));
+                LOG("&e[PC] &aLigado.");
+                }$$/g #'-'$${
+                UNSET(foreach);
+                    DO(15);
+                        SETLABEL("PC","&e[PC] &aCriado por &a&oSLEEP&a.");
+                        WAIT(1MS);
+                        SETLABEL("PC","&e[PC] &aCriado por SLEEP.");
+                        WAIT(1MS);
+                    LOOP;
+                SET(player_connected);
+            ELSEIF((%&status%="on")&&(player_connected));
+                LOG("&e[PC] &cEste macro já esta ON.");
+            ELSEIF((%&status%="off")&&(player_connected));
+                LOG("&e[PC] &cDesligado.");
+                UNSET(player_connected);
+                }$$/g #'-'$${
+            ELSEIF((%&status%="off")&&(!player_connected)); 
+                LOG("&e[PC] &cEste macro já esta OFF.");
+            ELSEIF((%&status%="list")&&(player_connected)); 
+                SET(&copy_amigos,"%&list_amigos%");
+                SET(&copy_rivais,"%&list_rivais%");
+                SET(&copy_staffs,"%&list_staffs%");
+                LOG("&e[PC] &aLista:");
+                LOG("");
+                    IF(%&copy_amigos%=NULL);
+                        LOG("&a[Amigo] &fLista vazia.");
+                    ELSE;
+                            IFMATCHES("%&copy_amigos%","<(.*)><(.*)>");
+                                SET(&tag,"Amigos");
+                            ELSE;
+                                SET(&tag,"Amigo");
+                            ENDIF;
+                        REPLACE(&copy_amigos,"<","");
+                        REPLACE(&copy_amigos,">",", ");
+                            IFMATCHES("%&copy_amigos%","(.*),");
+                                MATCH("%&copy_amigos%","(.*),",{&copy_amigos});
+                            ENDIF;
+                        LOG("&a[%&tag%] &f%&copy_amigos%.");
+                    ENDIF;
+                    IF(%&copy_rivais%=NULL);
+                        LOG("&c[Rival] &fLista vazia.");
+                    ELSE;
+                            IFMATCHES("%&copy_rivais%","<(.*)><(.*)>");
+                                SET(&tag,"Rivais");
+                            ELSE;
+                                SET(&tag,"Rival");
+                            ENDIF;                  
+                        REPLACE(&copy_rivais,"<","");
+                        REPLACE(&copy_rivais,">",", ");
+                            IFMATCHES("%&copy_rivais%","(.*),");
+                                MATCH("%&copy_rivais%","(.*),",{&copy_rivais});
+                            ENDIF;
+                        LOG("&c[%&tag%] &f%&copy_rivais%.");
+                    ENDIF;                      
+                    IF(%&copy_staffs%=NULL);
+                        LOG("&4[Staff] &fLista vazia.");
+                    ELSE;
+                            IFMATCHES("%&copy_staffs%","<(.*)><(.*)>");
+                                SET(&tag,"Staffs");
+                            ELSE;
+                                SET(&tag,"Staff");
+                            ENDIF;                          
+                        REPLACE(&copy_staffs,"<","");
+                        REPLACE(&copy_staffs,">",", ");
+                            IFMATCHES("%&copy_staffs%","(.*),");
+                                MATCH("%&copy_staffs%","(.*),",{&copy_staffs});
+                            ENDIF;
+                        LOG("&4[%&tag%] &f%&copy_staffs%.");
+                    ENDIF;      
+            ELSEIF((%&status%="list")&&(!player_connected));    
+                LOG("&e[PC] &cEste macro esta OFF.");
+            ENDIF;
+        ENDIF;                  
+        IFMATCHES("%&chatmsg%","^sleep (.*) (.*) (.*)$");
+            MATCH("%&chatmsg%","^sleep (.*) (.*) (.*)$",{&group,&action,&name});
+            SET(&command,"%&group%>%&action%");
+            UNSET(send_error_1);
+            UNSET(send_error_2);
+            UNSET(send_error_3);
+                IFMATCHES("%&command%","^(staff|amigo|rival)>(add|rem)$");
+                    IF(player_connected);
+                        IFMATCHES("%&name%","([a-z|0-9|_]*)",&filter,1,NONE);
+                        ENDIF;
+                        IFMATCHES("%&filter%","[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+[\w_]+");
+                            SET(send_error_3);
+                        ENDIF;
+                        IFMATCHES("%&filter%","[\w_]+[\w_]+[\w_]+[\w_]+");
+                        ELSE;
+                            SET(send_error_3);
+                        ENDIF;                      
+                            IF(!send_error_3);
+                                IFMATCHES("%PLAYER%","%&filter%");
+                                    LOG(&e[PC] &cEste jogador é você.);
+                                ELSE;
+                                    SET(&name,"%&filter%");
+                                    &minusculo[0] = a;  &maiusculo[0] = A;
+                                    &minusculo[1] = b;  &maiusculo[1] = B;
+                                    &minusculo[2] = c;  &maiusculo[2] = C;
+                                    &minusculo[3] = d;  &maiusculo[3] = D;
+                                    &minusculo[4] = e;  &maiusculo[4] = E;
+                                    &minusculo[5] = f;  &maiusculo[5] = F;
+                                    &minusculo[6] = g;  &maiusculo[6] = G;
+                                    &minusculo[7] = h;  &maiusculo[7] = H;
+                                    &minusculo[8] = i;  &maiusculo[8] = I;
+                                    &minusculo[9] = j;  &maiusculo[9] = J;
+                                    &minusculo[10] = k; &maiusculo[10] = K;
+                                    &minusculo[11] = l; &maiusculo[11] = L;
+                                    &minusculo[12] = m; &maiusculo[12] = M;
+                                    &minusculo[13] = n; &maiusculo[13] = N;
+                                    &minusculo[14] = o; &maiusculo[14] = O;
+                                    &minusculo[15] = p; &maiusculo[15] = P;
+                                    &minusculo[16] = q; &maiusculo[16] = Q;
+                                    &minusculo[17] = r; &maiusculo[17] = R;
+                                    &minusculo[18] = s; &maiusculo[18] = S;
+                                    &minusculo[19] = t; &maiusculo[19] = T;
+                                    &minusculo[20] = u; &maiusculo[20] = U;
+                                    &minusculo[21] = v; &maiusculo[21] = V;
+                                    &minusculo[22] = w; &maiusculo[22] = W;
+                                    &minusculo[23] = x; &maiusculo[23] = X;
+                                    &minusculo[24] = y; &maiusculo[24] = Y;
+                                    &minusculo[25] = z; &maiusculo[25] = Z; 
+                                        FOR(#sleep_for,0,25);
+                                            REPLACE(&name,"%&maiusculo[%#sleep_for%]%","%&minusculo[%#sleep_for%]%")
+                                        NEXT;
+                                        IF((%&action%="add")&&(%&group%="amigo"));
+                                            IFMATCHES("%&list_amigos%","<%&name%>");
+                                                SET(send_error_1);
+                                            ELSE;
+                                                SET(&list_amigos,"%&list_amigos%<%&name%>");
+                                            ENDIF;
+                                        ELSEIF((%&action%="add")&&(%&group%="staff"));
+                                            IFMATCHES("%&list_staffs%","<%&name%>");
+                                                SET(send_error_1);
+                                            ELSE;
+                                                SET(&list_staffs,"%&list_staffs%<%&name%>");
+                                            ENDIF;                              
+                                        ELSEIF((%&action%="add")&&(%&group%="rival"));
+                                            IFMATCHES("%&list_rivais%","<%&name%>");
+                                                SET(send_error_1);
+                                            ELSE;
+                                                SET(&list_rivais,"%&list_rivais%<%&name%>");
+                                            ENDIF;                                  
+                                        ELSEIF((%&action%="rem")&&(%&group%="amigo"));
+                                            IFMATCHES("%&list_amigos%","<%&name%>");
+                                                REPLACE(&list_amigos,"<%&name%>","");
+                                            ELSE;
+                                                SET(send_error_2);                              
+                                            ENDIF;
+                                        ELSEIF((%&action%="rem")&&(%&group%="staff"));
+                                            IFMATCHES("%&list_staffs%","<%&name%>");
+                                                REPLACE(&list_staffs,"<%&name%>","");
+                                            ELSE;
+                                                SET(send_error_2);                              
+                                            ENDIF;
+                                        ELSEIF((%&action%="rem")&&(%&group%="rival"));
+                                            IFMATCHES("%&list_rivais%","<%&name%>");
+                                                REPLACE(&list_rivais,"<%&name%>","");
+                                            ELSE;
+                                                SET(send_error_2);                                  
+                                            ENDIF;
+                                        ENDIF;
+                                        IF(send_error_1);
+                                            LOG(&e[PC] &c"%&name%" já esta nesta lista.);
+                                        ELSEIF(send_error_2);
+                                            LOG(&e[PC] &c"%&name%" nao esta nesta lista.);
+                                        ELSE;
+                                            IF(%&action%="add");
+                                                LOG(&e[PC] &a"%&name%" adicionado como %&group%.);
+                                            ELSEIF(%&action%="rem");
+                                                LOG(&e[PC] &c"%&name%" removido como %&group%.);
+                                            ENDIF;
+                                        ENDIF;
+                                ENDIF;
+                            ELSE;
+                                LOG(&e[PC] &c"%&name%" é um nick inválido.);
+                            ENDIF;
+                    ELSE;
+                        LOG(&e[PC] &cEste macro esta OFF.);
+                    ENDIF;                              
+                ELSE;
+                    IF(player_connected);
+                        LOG("&e[PC] &cUso correto: &fsleep &c[&famigo&c|&fstaff&c|&frival&c] [&fadd&c|&frem&c] [&fnome&c].");
+                    ELSE;
+                        LOG(&e[PC] &cEste macro esta OFF.);
+                    ENDIF;
+                ENDIF;
+        ENDIF;
+    ENDIF;
+ENDIF;
+IF((player_connected)&&(!foreach));
+    IF(foreach);
+    ELSE;
+        SET(foreach);
+        WAIT(5T);
+            DO;
+                SET(foreach);
+                SET(&foreach,"");
+                    FOREACH(players);
+                        IFMATCHES("%&list_amigos%","<%PLAYERNAME%>");
+                            SET(&foreach,"%&foreach%<amigo.%PLAYERNAME%.>");
+                        ENDIF;
+                        IFMATCHES("%&list_rivais%","<%PLAYERNAME%>");
+                            SET(&foreach,"%&foreach%<rival.%PLAYERNAME%.>");
+                        ENDIF;
+                        IFMATCHES("%&list_staffs%","<%PLAYERNAME%>");
+                            SET(&foreach,"%&foreach%<staff.%PLAYERNAME%.>");
+                        ENDIF;      
+                        IF(!player_connected);
+                            SET(&foreach,"");
+                            BREAK;
+                        ENDIF;                          
+                    NEXT;
+                    IFMATCHES("%&foreach%","<[\d\w_]+.[\d\w_]+.><[\d\w_]+.[\d\w_]+.>");
+                        SET(&label_txt,"Conectados");
+                    ELSE;
+                        SET(&label_txt,"Conectado");
+                    ENDIF;
+                REPLACE(&foreach,"staff","&4[Staff] &c");
+                REPLACE(&foreach,"amigo","&a[Amigo] &f");
+                REPLACE(&foreach,"rival","&c[Rival] &f");
+                REPLACE(&foreach,"<","\n");
+                REPLACE(&foreach,">","");
+                REPLACE(&foreach,".","");
+                    IF(%&foreach%!=NULL);
+                        SET(&foreach,"&e&l%&label_txt%:\n%&foreach%");
+                    ENDIF;
+                SETLABEL("PC","%&foreach%");
+                    IF(!player_connected);
+                        UNSET(foreach);
+                    ENDIF;
+            WHILE(foreach);
+        SETLABEL("PC","");
+    ENDIF;
+ENDIF;          
+                    
+}$$
+
+$${
+
+//Coloque sua senha abaixo (nao apague os " nem ;):
+&sleep_password = "sua_senha_aqui" ;
+
+//Nao altere nada abaixo.
+
+    IFMATCHES("%CHATCLEAN%","^Voce recebeu 1 coin\(s\) por ter ajudado a acabar com o mal\!$");
+        SET(@sleepkill);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^Seu inventário foi limpo Use \-a to clear ALL.$");
+        SET(@sleepclear);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^Você precisa de mais [\d\w_]+$");
+        SET(@sleeplack);
+    ENDIF; 
+    IFMATCHES("%CHATCLEAN%","^\*\*Rolou perfeitamente\*\*$");
+        SET(@sleeprolled);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^Você conseguiu manter o encantamento nesse item.$");
+        SET(@sleeprepair);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^\[Server\] (.+) Limpando (.+) do chao em 5s$");
+        SET(@sleep5s);
+        SET(@break);
+        WAIT(110T);
+        UNSET(@sleep5s);
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^\[Tesouro\] %PLAYER% encontrou um livro: Tesouro Nível ([\d,.]+)$",@#nivel,1,NONE);
+        SET(@sleepbook);
+        SET(@break);
+    ENDIF; 
+    IFMATCHES("%CHATCLEAN%","^A home \"[\d\w_]+\" foi definida com sucesso\!$");
+        SET(@sleepsethome);
+    ENDIF;  
+    IFMATCHES("%CHATCLEAN%","^Você foi enviado\(a\) para a home \"[\w\d_]+\"\!$");
+        SET(@sleepteleport);
+    ENDIF;  
+    IFMATCHES("%CHATCLEAN%","^Teleportado.$");
+        SET(@sleepteleport);
+    ENDIF;  
+    IFMATCHES("%CHATCLEAN%","^»Bem vindo de volta. Por favor digite /login sua-senha.$");
+            IFMATCHES("%&sleep_password%","(.+)_(.+)_(.)");
+                LOG("");
+                LOG("&e[Info] &fInforme sua senha no código da macro &eOnChat&f. &9&o#SLEEP");
+                LOG("");
+            ELSE;
+                    IFMATCHES("%SERVER%","(heaven|server3|hardcore).craftlandia.com.br");
+                        GUI(CHAT);
+                        WAIT(5T);
+                        TYPE("/login %&sleep_password%");
+                        WAIT(5T);
+                        PRESS(RETURN);
+                    ELSE;
+                        ECHO("/login %&sleep_password%");
+                    ENDIF;
+                WAIT(40T);
+                LOG("");
+                LOG("&e[Info] &fLogin realizado. &9&o#SLEEP");
+                LOG("");
+            ENDIF;
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^(.*) deseja ir até você! Use \/bring \@nick para aceitar.$",&nick_bring,1,NONE);
+        LOG("");
+        LOG("&e[Info] &fPressione a tecla &eDelete &fpara aceitar o call de &e%&nick_bring%&f.");
+        LOG("");    
+        SET(#mileseconds_bring,"600");
+            DO;
+                DEC(#mileseconds_bring,1);
+                    IF(KEY_DELETE);
+                            DO;WHILE(KEY_DELETE);
+                            IFMATCHES("%SERVER%","(heaven|server3|hardcore).craftlandia.com.br");
+                                GUI(CHAT);
+                                WAIT(5T);
+                                TYPE("/bring @%&nick_bring%");
+                                WAIT(5T);
+                                PRESS(RETURN);
+                            ELSE;
+                                ECHO("/bring @%&nick_bring%");
+                            ENDIF;
+                        LOG("");
+                        LOG("&e[Info] &fCall de &e%&nick_bring%&f aceito."); 
+                        LOG("");
+                        BREAK;
+                    ENDIF;
+            UNTIL(%#mileseconds_bring%<1);
+            IF(%#mileseconds_bring%<1);
+                LOG("");
+                LOG("&e[Info] &fCall de &e%&nick_bring%&f rejeitado.");
+                LOG("");
+            ENDIF;
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","^\[CraftLandia\] Você matou: (.*)$",&nick_death,1,NONE);
+        INC(#onchat_kills,1);
+        LOG("");
+        LOG("&e[Info] &fVocê matou &e%&nick_death%&f. (&e&l%#onchat_kills%&f) ");
+        LOG("");
+    ENDIF;
+    IFMATCHES("%CHATCLEAN%","» Você está tentando (.+) um item por (.+) coin\(s\) em uma loja desconhecida");
+        }$$/confiar$${
+        CALCYAWTO(-500,-500,#sleep_yaw,#distance);
+            IF(%#sleep_yaw%=0);
+                ACHIEVEMENTGET("/confiar #'-'","323");
+            ELSE;
+                ACHEIEVEMENTGET("/confiar #'-'","sign");
+            ENDIF;
+    ENDIF;
+    
+}$$  
+
+$${
+IFMATCHES(%CHATCLEAN%,"Agora você está logado. NUNCA use a mesma senha do CraftLandia em outros servidores.");
+wait(1800ms);
+}$$
+/stats
+$${wait(800ms);}$$
+ 
+$${wait(800ms);}$$
+/money
+$${
+endif;
+ifmatches(%CHATCLEAN%,"Escavaçao: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Escavaçao: %#a%,([0-9]+) XP",#b,1);
+setlabel(v1,&6Escavaçao: &a%#a%.%#b%,v1);
+ifmatches(%CHATCLEAN%,"Habilidade escavaçao aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Escavaçao: ([0-9]+) XP",#c,1);
+setlabel(v1,&6Escavaçao: &a%#c%,v1);
+ifmatches(%CHATCLEAN%,"Habilidade escavaçao aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Pescador: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Pescador: %#a%,([0-9]+) XP",#b,1);
+setlabel(v2,&2[&fPescador&2] &2%#a%.%#b%,v2);
+ifmatches(%CHATCLEAN%,"Habilidade pescador aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Pescador: ([0-9]+) XP",#c,1);
+setlabel(v2,&2[&fPescador&2] &2%#c%,v2);
+ifmatches(%CHATCLEAN%,"Habilidade pescador aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Herbalismo: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Herbalismo: %#a%,([0-9]+) XP",#b,1);
+setlabel(v3,&6Herbalismo: &a%#a%.%#b%,v3);
+ifmatches(%CHATCLEAN%,"Habilidade herbalismo aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Herbalismo: ([0-9]+) XP",#c,1);
+setlabel(v3,&6Herbalismo: &a%#c%,v3);
+ifmatches(%CHATCLEAN%,"Habilidade herbalismo aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Mineraçao: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Mineraçao: %#a%,([0-9]+) XP",#b,1);
+setlabel(v4,&6Mineraçao: &a%#a%.%#b%,v4);
+ifmatches(%CHATCLEAN%,"Habilidade mineraçao aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Mineraçao: ([0-9]+) XP",#c,1);
+setlabel(v4,&6Mineraçao: &a%#c%,v4);
+ifmatches(%CHATCLEAN%,"Habilidade mineraçao aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Lenhador: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Lenhador: %#a%,([0-9]+) XP",#b,1);
+setlabel(v5,&6Lenhador: &a%#a%.%#b%,v5);
+ifmatches(%CHATCLEAN%,"Habilidade lenhador aumentada em 1.");
+#b = %#b%+1
+endif
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Lenhador: ([0-9]+) XP",#c,1);
+setlabel(v5,&6Lenhador: &a%#c%,v5);
+ifmatches(%CHATCLEAN%,"Habilidade lenhador aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Arqueiro: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Arqueiro: %#a%,([0-9]+) XP",#b,1);
+setlabel(v6,&6Arqueiro: &a%#a%.%#b%,v6);
+ifmatches(%CHATCLEAN%,"Habilidade arqueiro aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Arqueiro: ([0-9]+) XP",#c,1);
+setlabel(v6,&6Arqueiro: &a%#c%,v6);
+ifmatches(%CHATCLEAN%,"Habilidade arqueiro aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Espadas: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Espadas: %#a%,([0-9]+) XP",#b,1);
+setlabel(v7,&6Espadas: &a%#a%.%#b%,v7);
+ifmatches(%CHATCLEAN%,"Habilidade espadas aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Espadas: ([0-9]+) XP",#c,1);
+setlabel(v7,&6Espadas: &a%#c%,v7);
+ifmatches(%CHATCLEAN%,"Habilidade espadas aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Domar: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Domar: %#a%,([0-9]+) XP",#b,1);
+setlabel(v8,&6Domar: &a%#a%.%#b%,v8);
+ifmatches(%CHATCLEAN%,"Habilidade domar aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Domar: ([0-9]+) XP",#c,1);
+setlabel(v8,&6Domar: &a%#c%,v8);
+ifmatches(%CHATCLEAN%,"Habilidade domar aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Acrobacia: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Acrobacia: %#a%,([0-9]+) XP",#b,1);
+setlabel(v9,&6Acrobacia: &a%#a%.%#b%,v9);
+ifmatches(%CHATCLEAN%,"Habilidade acrobacia aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Acrobacia: ([0-9]+) XP",#c,1);
+setlabel(v9,&6Acrobacia: &a%#c%,v9);
+ifmatches(%CHATCLEAN%,"Habilidade acrobacia aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Reparaçao: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Reparaçao: %#a%,([0-9]+) XP",#b,1);
+setlabel(v10,&2[&fReparaçao&2] &2%#a%.%#b%,v10);
+ifmatches(%CHATCLEAN%,"Habilidade em reparaçao aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Reparaçao: ([0-9]+) XP",#c,1);
+setlabel(v10,&2[&fReparaçao&2] &2%#c%,v10);
+ifmatches(%CHATCLEAN%,"Habilidade em reparaçao aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Desarmado: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Desarmado: %#a%,([0-9]+) XP",#b,1);
+setlabel(v11,&6Desarmado: &a%#a%.%#b%,v11);
+ifmatches(%CHATCLEAN%,"Habilidade desarmado aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Desarmado: ([0-9]+) XP",#c,1);
+setlabel(v11,&6Desarmado: &a%#c%,v11);
+ifmatches(%CHATCLEAN%,"Habilidade desarmado aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,"Machado: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Machado: %#a%,([0-9]+) XP",#b,1);
+setlabel(v11,&6Machado: &a%#a%.%#b%,v11);
+ifmatches(%CHATCLEAN%,"Habilidade machado aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Machado: ([0-9]+) XP",#c,1);
+setlabel(v12,&6Machado: &a%#c%,v12);
+ifmatches(%CHATCLEAN%,"Habilidade machado aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+}$$
+ 
+$${
+ifmatches(%CHATCLEAN%,[\»]Bem vindo de volta[\.]);set(filt);#saldo=0;&saldo=0;log(&d» &6&Relogou! 6Saldo Resetado!);endif;
+ 
+&rgxsaldo="^(\[l\] [\S]+%PLAYER%\: reset saldo)$";ifmatches(%CHATCLEAN%,%&rgxsaldo%);set(filt);#saldo=0;&saldo=0;log(&d» &6Saldo Resetado!);endif;
+&rgxmob="^(\[l\] [\S]+%PLAYER%\: reset mob)$";ifmatches(%CHATCLEAN%,%&rgxmob%);set(filt);#mobs=0;log(&d» &6Mobs Resetado!);endif;
+&rgxplayer="^(\[l\] [\S]+%PLAYER%\: reset kills)$";ifmatches(%CHATCLEAN%,%&rgxplayer%);set(filt);#morreu=0;#matou=0;log(&d» &6Mortes Resetadas!);endif;
+ifmatches(%CHATCLEAN%,[\»]Agora você está logado\. NUNCA);}$$/money$${wait(1);endif;
+ 
+ifmatches(%CHATCLEAN%,^\[[g]\].+%PLAYER%[\:].+);@#t=%@#t%-1;#saldo=%#saldo%-1;set(filt);endif;
+ifmatches(%CHATCLEAN%,^\[[a]\] %PLAYER%[\:].+);@#t=%@#t%-500;#saldo=%#saldo%-500;set(filt));endif;
+ifmatches(%CHATCLEAN%,^Pedido de teleporte enviado\.$);@#t=%@#t%-5;#saldo=%#saldo%-5;set(filt);endif;
+ 
+ifmatches(%CHATCLEAN%,\>(.+) comprou .+,&rum,1);set(filt);ifmatches(%&rum%,Voce);&plt=-;else;&plt=+;endif;
+        &rgx1ad="\>.+ comprou .+ por ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx1ad%);MATCH(%CHATCLEAN%,%&rgx1ad%,{&aatd,&bbtd,&cctd});MATCH(%&aatd%%&bbtd%%&cctd%,([0-9]+),{#d});endif;
+                &rgx2ad="\>.+ comprou .+ por ([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx2ad%);MATCH(%CHATCLEAN%,%&rgx2ad%,{&bbsd,&ccsd});MATCH(%&bbsd%%&ccsd%,([0-9]+),{#d});endif;
+                        &rgx3ad="\>.+ comprou .+ por ([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx3ad%);MATCH(%CHATCLEAN%,%&rgx3ad%,{&ccod});MATCH(%&ccod%,([0-9]+),{#d});endif;
+                            ifmatches(%&plt%,\+);#saldo=%#saldo%+%#d%;@#t=%@#t%-%#d%;endif;ifmatches(%&plt%,\-);@#t=%@#t%+%#d%;#saldo=%#saldo%-%#d%;endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,\>(.+) vendeu .+,&rum,1);set(filt);ifmatches(%&rum%,Voce);&plt=+;else;&plt=-;endif;
+        &rgx1ac="\>.+ vendeu .+ por ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx1ac%);MATCH(%CHATCLEAN%,%&rgx1ac%,{&aatc,&bbtc,&cctc});MATCH(%&aatc%%&bbtc%%&cctc%,([0-9]+),{#g});endif;
+                &rgx2ac="\>.+ vendeu .+ por ([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx2ac%);MATCH(%CHATCLEAN%,%&rgx2ac%,{&bbsc,&ccsc});MATCH(%&bbsc%%&ccsc%,([0-9]+),{#g});endif;
+                        &rgx3ac="\>.+ vendeu .+ por ([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx3ac%);MATCH(%CHATCLEAN%,%&rgx3ac%,{&ccac});MATCH(%&ccac%,([0-9]+),{#g});endif;
+                            ifmatches(%&plt%,\+);#saldo=%#saldo%+%#g%;@#t=%@#t%+%#g%;;endif;ifmatches(%&plt%,\-);@#t=%@#t%-%#g%;#saldo=%#saldo%-%#g%;endif;
+endif;
+ 
+ifmatches(%CHATCLEAN%,^\[Money\] ([\S]+).+[\.]$,&rum,1);set(filt);ifmatches(%&rum%,Voce);&plt=-;else;&plt=+;endif;
+                &rgx1act="\[Money\] .+ ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins.+";ifmatches(%CHATCLEAN%,%&rgx1act%);MATCH(%CHATCLEAN%,%&rgx1act%,{&aatct,&bbtct,&cctct});MATCH(%&aatct%%&bbtct%%&cctct%,([0-9]+),{#p});endif;
+                        &rgx2act="\[Money\] .+ ([0-9]+)\,([0-9]+)\.([0-9]+) Coins.+";ifmatches(%CHATCLEAN%,%&rgx2act%);MATCH(%CHATCLEAN%,%&rgx2act%,{&bbsct,&ccsct});MATCH(%&bbsct%%&ccsct%,([0-9]+),{#p});endif;
+                                &rgx3act="\[Money\] .+ ([0-9]+)\.([0-9]+) Coins.+";ifmatches(%CHATCLEAN%,%&rgx3act%);MATCH(%CHATCLEAN%,%&rgx3act%,{&ccact});MATCH(%&ccact%,([0-9]+),{#p});endif;
+                                    ifmatches(%&plt%,\+);#saldo=%#saldo%+%#p%;@#t=%@#t%+%#p%;endif;ifmatches(%&plt%,\-);#saldo=%#saldo%-%#p%;@#t=%@#t%-%#p%;endif;
+endif;
+ 
+&rgxmob="^Voce recebeu ([\S]+) Coin por ter ajudado a acabar com o mal $";ifmatches(%CHATCLEAN%,%&rgxmob%,#mob,1);@#t=%@#t%+%#mob%;#saldo=%#saldo%+%#mob%;#mobs=%#mobs%+1;set(filt);endif;
+&rgxpl1="^\[CraftLandia\] Você matou\:.+";ifmatches(%CHATCLEAN%,%&rgxpl1%);#matou=%#matou%+1;set(filt);;endif;
+&rgxpl2="^\[CraftLandia\] Você foi morto por:.+";ifmatches(%CHATCLEAN%,%&rgxpl2%);#morreu=%#morreu%+1;set(filt);endif;
+ 
+&rgx1b="\[Money\] Balanco\: ([0-9]+)\,([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx1b%);MATCH(%CHATCLEAN%,%&rgx1b%,{&a,&b,&c});MATCH(%&a%%&b%%&c%,([0-9]+),{@#t});set(filt);endif;
+&rgx2b="\[Money\] Balanco\: ([0-9]+)\,([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx2b%);MATCH(%CHATCLEAN%,%&rgx2b%,{&b,&c});MATCH(%&b%%&c%,([0-9]+),{@#t});set(filt);endif;
+&rgx3b="\[Money\] Balanco\: ([0-9]+)\.([0-9]+) Coins";ifmatches(%CHATCLEAN%,%&rgx3b%);MATCH(%CHATCLEAN%,%&rgx3b%,{&c});MATCH(%&c%,([0-9]+),{@#t});set(filt);endif;
+ 
+ 
+if(filt);unset(filt);
+if(%@#t%>9999999);&rrgx="([1-9]{1}[0-9]{1})([0-9]{3})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&ra,&rb,&rc});&t=%&ra%.%&rb%.%&rc%;else;
+if(%@#t%>999999);&rrgx="([1-9]{1})([0-9]{3})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&ra,&rb,&rc});&t=%&ra%.%&rb%.%&rc%;else;
+if(%@#t%>99999);&rrgx="([1-9]{1}[0-9]{2})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&rb,&rc});&t=%&rb%.%&rc%;else;
+if(%@#t%>9999);&rrgx="([1-9]{1}[0-9]{1})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&rb,&rc});&t=%&rb%.%&rc%;else;
+if(%@#t%>999);&rrgx="([1-9]{1})([0-9]{3})";MATCH(%@#t%,%&rrgx%,{&rb,&rc});&t=%&rb%.%&rc%;else;
+if(%@#t%<=999);&rrgx="([0-9]{1,3})";MATCH(%@#t%,%&rrgx%,{&rc});&t=%&rc%;endif;endif;endif;endif;endif;endif;
+if((%#saldo%>9999999)||(%#saldo%<-9999999));&arrgx="([\-]?[1-9]{1}[0-9]{1})([0-9]{3})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&ara,&arb,&arc});&saldo=%&ara%.%&arb%.%&arc%;else;
+if((%#saldo%>999999)||(%#saldo%<-999999));&arrgx="([\-]?[1-9]{1})([0-9]{3})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&ara,&arb,&arc});&saldo=%&ara%.%&arb%.%&arc%;else;
+if((%#saldo%>99999)||(%#saldo%<-99999));&arrgx="([\-]?[1-9]{1}[0-9]{2})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&arb,&arc});&saldo=%&arb%.%&arc%;else;
+if((%#saldo%>9999)||(%#saldo%<-9999));&arrgx="([\-]?[1-9]{1}[0-9]{1})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&arb,&arc});&saldo=%&arb%.%&arc%;else;
+if((%#saldo%>999)||(%#saldo%<-999));&arrgx="([\-]?[1-9]{1})([0-9]{3})";MATCH(%#saldo%,%&arrgx%,{&arb,&arc});&saldo=%&arb%.%&arc%;else;
+if((%#saldo%<=999)||(%#saldo%>=-999));&arrgx="([\-]?[0-9]{1,3})";MATCH(%#saldo%,%&arrgx%,{&arc});&saldo=%&arc%;endif;endif;endif;endif;endif;endif;
+if(%#saldo%<0);&sgy=;&saldohm="&c :(";else;&sgy=+;&saldohm="&c :)";endif;if(%#saldo%=0);&sgy=;&saldohm="&c '-'";endif;
+setlabel(DD1,&2[&fMoney&2] &2%&t% &fCoins,DD1);
+setlabel(DD2,"&2[&fLucro&2]&f/&2[&fPrejuizo&2] &2%&sgy%%&saldo%%&saldohm%",DD2);
+setlabel(DD4,&6Matou: &2%#matou% &f<---> &6Morreu: &c%#morreu%,DD4);
+endif;
+}$$
+
+==================================================
+
+
+PESCA -500 
+==================================================
+
+$${
+if(supfishing);
+log("&f[&bMACRO&f] &6SupFISHING Foi &cParado&6!.");
+toggle(supfishing);
+stop();
+
+else;
+log("&f[&bMACRO&f] &6SupFISHING Foi &aIniciado&6!.");
+toggle(supfishing);
+endif;
+}$$
+
+/home pesqueiro
+
+$${
+gui(Inventory);  
+pick(346);
+look(,0);
+look(,-90);
+do();
+  
+if(%DURABILITY%<10);
+log("&f[&bMACRO&f] &aREPARANDO&6!.");
+gui();
+look(,90);
+wait(1);
+key(use);
+wait(1);
+key(use);
+wait(1);
+look(,0);
+look(,-90);
+}$$
+
+/skills
+
+$${
+gui(Inventory);
+endif;
+key(use);
+wait(50ms);
+loop;
+}$$
+
+==================================================
+
+
+HOMES
+==================================================
+
+* BLAZE
+ -/home sleeplinha
+ -/home sleepblaze
+ -/home sleepblazebaus
+ 
+* POTS
+ -/home ypots
+ -/home ypotsbaus
+
+* PESCA +500
+ -/home pesqueiro
+ -/home 10
+ -/home 11
+ -/home 13
+ -/home 14
+
+* PESCA -500
+ -/home pesqueiro
+
+==================================================
+
+
+COMANDOS ONCHANT (LABEL)
+==================================================
+
+* PESCA
+ -control name = v2
+ -binding = v2
+
+* REPARAÇÃO
+ -control name = v10
+ -binding = v10
+
+* LUCRO / PREJUIZO
+ -control name = DD2
+ -binding = DD2
+
+* MONEY
+ -control name = DD1
+ -binding = DD1
+
+* MATOU / MORREU
+ -control name = DD4
+ -binding = DD4
+
+* SLEEP PC
+ -control name = PC
+ -binding = PC
++ COMANDOS SLEEP PC{
+
+Comando: sleep pc on
+Liga a macro Player Connected
+ 
+Comando: sleep pc off
+Desliga a macro Player Connected
+ 
+Comando: sleep pc list
+Lista todos os jogadores que você adicionou.
+ 
+Comando: sleep amigo add <nome>
+Adiciona um jogador na lista de amigos
+ 
+Comando: sleep amigo rem <nome>
+Remove um jogador da lista de amigos
+ 
+Comando: sleep rival add <nome>
+Adiciona um jogador na lista de rivais
+ 
+Comando: sleep rival rem <nome>
+Remove um jogador da lista de rivais
+ 
+Comando: sleep staff add <nome>
+Adiciona um jogador na lista de staffs
+ 
+Comando: sleep staff rem <nome>
+Remove um jogador da lista de staffs
+}
+
+==================================================
+
+
+ONJOINGAME
+==================================================
+
+$${do;setlabel(fps,&9&lFPS &4>> &f: &a&l%FPS%,fps);loop;}$$
+
+==================================================
+
+
+COMANDOS ONJOINGAME (LABEL)
+==================================================
+
+* FPS
+ -control name = fps
+ -binding = fps
+
+==================================================
+
+
+ON PICKUP ITEN
+==================================================
+
+$${log("&5&l&oItem Pego: &f&l&o%PICKUPITEM%"); }$$
+
+==================================================
+
+
+ON LVUP
+==================================================
+
+$${log("&5&l&oParabens Vc &f&l&oUpou para o LV:&b&l&o%LEVEL%");}$$
+
+==================================================
+
+
+
+
