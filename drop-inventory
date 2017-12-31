@@ -1,0 +1,45 @@
+$${
+IF(drop);
+    TOGGLE(drop);
+    LOG("&f[&bMACRO&f] &6SupDROP &cDesligada&6!.");
+    STOP();
+ENDIF;
+ELSE;
+    TOGGLE(drop);
+    LOG("&f[&bMACRO&f] &6SupDROP &aLigada&6!.");
+    LOG("&f[&bMACRO&f] &6Feita especialmente para: &5&lERIICKPL&6!.")
+    LOG("");
+    LOG("&f[&bMACRO&f] &7Trabalho &aIniciado&6!.");
+}$$
+
+$${
+GUI(INVENTORY);
+FOR(#nslot,9,45);
+GETSLOTITEM(%#nslot%,#id,#stack);
+    IFMATCHES("%#id%","(279|278|277|276|261|262|41|266|42|265|57|264|133|388|310|311|312|313|322|366|364|396|400|297|373|350|387|320)");
+        WAIT(3T);
+        SLOTCLICK(%#nslot%,L,FALSE);
+        WAIT(3T);
+        SLOTCLICK(%#nslot%,L,FALSE);
+        WAIT(3T);
+    ELSE;   
+        WAIT(2T);
+        SLOTCLICK(%#nslot%,L,FALSE);
+        WAIT(2T);
+        SLOTCLICK(-999);
+        WAIT(2T);
+    ENDIF;
+    LOG(%#nslot%);    
+    NEXT;
+ENDIF;
+GUI(); 
+}$$
+
+$${
+CLEARCHAT;
+LOG("");
+LOG("&f[&bMACRO&f] &7Trabalho &cFinalizado&7!");
+ENDIF;
+TOGGLE(drop);
+STOP();
+}$$
