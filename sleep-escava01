@@ -5,10 +5,10 @@ $${
                  CLEARCHAT;
                  LOG("&4&l[Macro] &6D4L3STEscavaçao &4[OFF]");
 ACHIEVEMENTGET("(Upgrade 0) Macro [OFF]",35:14);
-         LOG("&0------------------")
-         LOG("&2-> &6Você conseguiu:")
-         LOG("&9[%#sleepbooknumber%] &8Livro's &4!!")
-         LOG("&0------------------")
+         LOG("&0------------------");
+         LOG("&2-> &6Você conseguiu:");
+         LOG("&9[%#sleepbooknumber%] &8Livro's &4!!");
+         LOG("&0------------------");
 UNSET(sleepesc);
 STOP();
                 ELSE;
@@ -28,7 +28,7 @@ LOG("&2&l[Macro] &7Iniciar com ultimas configuraçoes?");
 LOG("&9[1] &fSim");
 LOG("&9 [2] &fNao");
 LOG("");
-PROMPT(#sleepskip,$?,Insira o número de sua resposta e pressione ENTER.);
+PROMPT(#sleepskip,$$?,"Insira o número de sua resposta e pressione ENTER.");
 IF((%#sleepskip%=null) || (%#sleepskip%>2));
 LOG("&8[!] Resposta inválida &8[!]");
 LOG("&4&l[Macro] &6D4L3STEscavaçao &4[OFF]");
@@ -50,7 +50,7 @@ LOG("&9 [5] &fMicélio");
 LOG("&9 [6] &fAreia das Almas");
 LOG("&9[7] &fArgila");
 LOG("");
-PROMPT(#sleepblocoprompt,$?,Insira o número de sua resposta e pressione ENTER.);
+PROMPT(#sleepblocoprompt,$$?,"Insira o número de sua resposta e pressione ENTER.");
      IF((%#sleepblocoprompt%=null) || (%#sleepblocoprompt%>7));
         LOG("&8[!] Resposta inválida &8[!]");
         LOG("&4&l[Macro] &6D4L3STEscavaçao &4[OFF]");
@@ -89,7 +89,7 @@ LOG("&9 [3] &fOuro");
 LOG("&9 [4] &fPedra");
 LOG("&9[5] &fMadeira");
 LOG("");
-    PROMPT(#sleepferramentaprompt,$?,Insira o número de sua resposta e pressione ENTER.);
+    PROMPT(#sleepferramentaprompt,$$?,"Insira o número de sua resposta e pressione ENTER.");
      IF((%#sleepferramentaprompt%=null) || (%#sleepferramentaprompt%>5));
         LOG("&8[!] Resposta inválida &8[!]");
         LOG("&4&l[Macro] &6D4L3STEscavaçao &4[OFF]");
@@ -129,7 +129,7 @@ LOG("&2&l[Macro] &7Pá é encantada com &7Eficiência 4/5/7?");
 LOG("&9[1] &fSim");
 LOG("&9 [2] &fNao");
 LOG("");
-    PROMPT(#sleepencantamentoprompt,$?,Insira o número de sua resposta e pressione ENTER.);
+    PROMPT(#sleepencantamentoprompt,$$?,"Insira o número de sua resposta e pressione ENTER.");
      IF((%#sleepencantamentoprompt%=null) || (%#sleepencantamentoprompt%>2));
         LOG("&8[!] Resposta inválida &8[!]");
         LOG("&4&l[Macro] &6D4L3STEscavaçao &4[OFF]");
@@ -148,7 +148,7 @@ LOG("&2&l[Macro] &7Trap de Baus:");
 LOG("&9[1] &fArmazenar Todos os Drops (Itens nos baús)");
 LOG("&9 [2] &fApenas Livros e Diamantes (Restante no lixo)");
 LOG("");
-    PROMPT(#sleeplixeiraprompt,$?,Insira o número de sua resposta e pressione ENTER.);
+    PROMPT(#sleeplixeiraprompt,$$?,"Insira o número de sua resposta e pressione ENTER.");
      IF((%#sleeplixeiraprompt%=null) || (%#sleeplixeiraprompt%>2));
         LOG("&8[!] Resposta inválida &8[!]");
         LOG("&4&l[Macro] &6D4L3STEscavaçao &4[OFF]");
@@ -168,7 +168,7 @@ LOG("&9[1] &fVender na Warp Vip");
 LOG("&9 [2] &fVender Warp Loja (/home sleepescdisco)");
 LOG("&9[3] &fNao vender Discos");
 LOG("");
-    PROMPT(#sleepdiscosprompt,$?,Insira o número de sua resposta e pressione ENTER.);
+    PROMPT(#sleepdiscosprompt,$$?,"Insira o número de sua resposta e pressione ENTER.");
      IF((%#sleepdiscosprompt%=null) || (%#sleepdiscosprompt%>3));
         LOG("&8[!] Resposta inválida &8[!]");
         LOG("&4&l[Macro] &6D4L3STEscavaçao &4[OFF]");
@@ -238,10 +238,10 @@ KEY(use);
 WAIT(100MS)
 ENDIF;
 IF(KEY_1);
-LOG("&0------------------")
-LOG("&2-> &6Você conseguiu:")
-LOG("&9[%#sleepbooknumber%] &8Livro's &4!!")
-LOG("&0------------------")
+LOG("&0------------------");
+LOG("&2-> &6Você conseguiu:");
+LOG("&9[%#sleepbooknumber%] &8Livro's &4!!");
+LOG("&0------------------");
 ENDIF;
      IF(@sleepbook);
         SET(sleeplivrobau);
@@ -266,7 +266,7 @@ ENDIF;
 LOG(" &6[!] &7Inventário sendo reorganizado e verificado. &6[!]");
 LOG("");
 GUI(INVENTORY);
-}$/pvp off${
+}$$/pvp off$${
 #sleepfalminerio=0;
 #sleepfalbloco=0;
 WAIT(300MS);
@@ -336,14 +336,14 @@ ENDIF;
 IF((%#sleepdiscos%=1) && (%#sleepinvbloco%=1) || (%#sleepinvminerio%=1) || (%#sleepinvche%=2));
      LOG(" &6[!] &7Você optou por vender os discos automaticamente na Warp Vip, portando, vendendo discos. &6[!]");
      LOG("");
-}$/warp vip${
+}$$/warp vip$${
      WAIT(1500MS);
-}$#SLEEP escavaçao [VIP] (Upgrade 0): disponível no site: sleepmacros (blogspot)${
+}$$#SLEEP escavaçao [VIP] (Upgrade 0)$${
      WAIT(1500MS);
-     }$/warp vip${
+     }$$/warp vip$${
      WAIT(3000MS);
 KEYDOWN(JUMP);WAIT(1300ms);KEYUP(JUMP);WAIT(1300MS);
-}$#SLEEP escavaçao [VIP] (Upgrade 0): iniciando venda de discos${
+}$$#SLEEP escavaçao [VIP] (Upgrade 0): iniciando venda de discos$${
 DO;
 LOOK(EAST);
 WAIT(15MS);
@@ -405,7 +405,7 @@ WAIT(175MS);
 GUI(INVENTORY);
     ENDIF;
 NEXT;
-                         }$/home sleepescbaus${WAIT(3250MS);}$/home sleepescbaus${WAIT(3250MS);
+                         }$$/home sleepescbaus$${WAIT(3250MS);}$$/home sleepescbaus$${WAIT(3250MS);
                               KEYDOWN(JUMP);WAIT(1300MS);KEYUP(JUMP);WAIT(1300MS);
 ENDIF;
 ENDIF;
@@ -417,14 +417,14 @@ ENDIF;
     IF((%#sleepdiscos%=2) && (%#sleepinvbloco%=1) || (%#sleepinvminerio%=1) || (%#sleepinvche%=2));
 LOG(" &6[!] &7Você optou por vender os discos automaticamente na Warp Loja, portando, vendendo discos. &6[!]");
      LOG("");
-}$/home sleepescdisco${
+}$$/home sleepescdisco$${
      WAIT(1500MS);
-}$#SLEEP escavaçao [VIP] (Upgrade 0): disponível no site: sleepmacros (blogspot)${
+}$$#SLEEP escavaçao [VIP] (Upgrade 0): disponível no site: sleepmacros (blogspot)$${
      WAIT(1500MS);
-     }$/home sleepescdisco${
+     }$$/home sleepescdisco$${
      WAIT(3000MS);
 KEYDOWN(JUMP);WAIT(1300ms);KEYUP(JUMP);WAIT(1300MS);
-}$#SLEEP escavaçao [VIP] (Upgrade 0): iniciando venda de discos${
+}$$#SLEEP escavaçao [VIP] (Upgrade 0): iniciando venda de discos$${
 GUI(INVENTORY);
 WAIT(300MS);
 FOR(#slot,1,44);
@@ -438,13 +438,13 @@ WAIT(175MS);
 GUI(INVENTORY);
 ENDIF;
 NEXT;
-}$/home sleepescbaus${WAIT(3250MS);}$/home sleepescbaus${WAIT(3250MS);
+}$$/home sleepescbaus$${WAIT(3250MS);}$$/home sleepescbaus$${WAIT(3250MS);
      KEYDOWN(JUMP);WAIT(1300MS);KEYUP(JUMP);WAIT(1300MS);
     ENDIF;
 IF((%#sleepdiscos%=3) && (%#sleepbaucheio%=1) && (%#sleepinvbloco%=1) || (%#sleepinvminerio%=1) || (%#sleepinvche%=2));
 LOG(" &6[!] &7Você optou por nao vender os discos automaticamente, portando, pulando para próxima etapa. &6[!]");
      LOG("                             ");
-}$/home sleepescbaus${WAIT(3250MS);}$/home sleepescbaus${WAIT(3250MS);
+}$$/home sleepescbaus$${WAIT(3250MS);}$$/home sleepescbaus$${WAIT(3250MS);
      KEYDOWN(JUMP);WAIT(1300MS);KEYUP(JUMP);WAIT(1300MS);
 ENDIF;
 
@@ -770,7 +770,7 @@ ENDIF;
     ENDIF;
 
 LOG("&8[!] &8Retomando escavaçao &8[!]");
-}$/home sleepesc${
+}$$/home sleepesc$${
 WAIT(1250MS);
 GUI();
 
