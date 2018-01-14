@@ -1,0 +1,306 @@
+$${
+ 
+                            if(peels1);
+ 
+                               log("&d&l[MACRO] &6Escavaçao Automática&4&l (OFF)");
+                               ACHIEVEMENTGET("Desligando, by SLEEP",388:4);
+                               unset(slp);
+                               unset(peels1);
+                               unset(peels2);
+                               stop(); 
+ 
+                            else;
+ 
+                               log("&d&l[MACRO] &6Escavaçao Automática&2&l (ON)");
+                               log("&4-> &8Desligue seu macro de &6Sprint &8(Caso tenha)");
+                               ACHIEVEMENTGET("Iniciando, by SLEEP",264:4);
+                               set(peels1);
+                               set(peels2);
+                               endif;
+ 
+ 
+CLEARCHAT;
+log("&0-----------------------------------")
+log("&a-> &6Estou com Lag ?")
+log( );
+log("&a-> &9Nao !! &9Responda &4[1]")
+log("&a-> &9Um pouco !! &9Responda &4[2]")
+log("&a-> &9Muito !! &9Responda &4[3]")
+log("&0-----------------------------------")
+log( );
+PROMPT(#lag,$$?,Estou com Lag ?);
+ 
+if(%#lag%=nothing);log("&4Stop !! Nao deixe em branco.");
+unset(slp);unset(peels1);unset(peels2);stop();endif;
+ 
+if(%#lag%=1);#delay=3;#delay2=150;#delay3=250;#delay4=1;endif;
+if(%#lag%=2);#delay=6;#delay2=200;#delay3=350;#delay4=2;endif;
+if(%#lag%=3);#delay=10;#delay2=400;#delay3=500;#delay4=3;endif;
+ 
+log("&d&l[MACRO] &6Escavaçao Automática&2&l (ON)");
+log("&4-> &8Desligue seu macro de &6Sprint &8(Caso tenha)");
+if(%#lag%=1);log("&4-> &8Sr.Macro Nao estou com &6Lag &8!!");endif;
+if(%#lag%=2);log("&4-> &8Sr.Macro Estou um Pouco &6Lag &8!!");endif;
+if(%#lag%=3);log("&4-> &8Sr.Macro Estou com Muito &6Lag &8!!");endif;
+ 
+ 
+IFMATCHES(%DIRECTION%,N);
+&near=NORTH;endif;
+IFMATCHES(%DIRECTION%,S);
+&near=SOUTH;endif;
+IFMATCHES(%DIRECTION%,W);
+&near=WEST;endif;
+IFMATCHES(%DIRECTION%,E);
+&near=EAST;endif;
+ 
+ 
+         #bau = 1;
+        #bloco = 13;
+       #pa = 277;
+      #rep = 264;
+     #dur = 81;
+    #temp = 300;
+   #vel = 1;
+ 
+ 
+endif;
+endif;
+ 
+set(slp);
+if(slp);
+look(%&near%);
+look(,-90);
+ 
+                                                     do;
+                                                     do(%#temp%);
+                                                     do(%#temp%);
+ 
+                                                          pick(%#bloco%);
+                                                          key(use);
+                                                          wait(%#vel%ms);
+                                                          pick(%#pa%);
+ 
+                                                     if(%DURABILITY%<%#dur%);
+ 
+                                                         look(%&near%);
+                                                         look(,90);
+                                                         key(use);
+                                                         wait(%#delay4%);
+ 
+                                                     endif;
+ 
+             look(%&near%);
+             look(,-90);
+             key(attack);
+             loop;
+ 
+ 
+if(peels2);
+ 
+   gui(inventory);
+   wait(1100ms);
+   getslotitem(35,#id,#stack);
+ 
+if(%#stack%=0);
+ 
+   gui();
+   else;
+   log("&d»» &6Inventário cheio, vendendo itens.");
+   wait(1);
+ 
+ 
+}$$/warp vip$${wait(%#delay%);
+}$$[sleep escavaçao] preparando para vender itens !!$${
+}$$/warp vip$${wait(%#delay%);
+keydown(jump);wait(700ms);keyup(jump);wait(700ms);
+ 
+ 
+do;look(EAST);wait(10ms);keydown(forward);until(%XPOS%=710);keyup(forward);
+do;look(EAST);wait(10ms);keydown(sneak);keydown(forward);until(%XPOS%=712);keyup(forward);keyup(sneak);wait(600ms);
+do;look(WEST);wait(10ms);keydown(right);until(%ZPOS%=654);keyup(right);
+do;look(WEST);wait(10ms);keydown(right);keydown(sneak);until(%ZPOS%=651);keyup(right);keyup(sneak);wait(600ms);
+do;look(WEST);wait(10ms);keydown(jump);keydown(forward);until(%XPOS%=710);keyup(jump);keyup(forward);wait(600ms);
+do;look(WEST);wait(10ms);keydown(right);wait(500ms);keydown(sneak);until(%ZPOS%=647);keyup(right);wait(600ms);
+ 
+do(18);look(270,0);gui();key(attack);wait(%#delay3%ms);loop;keyup(sneak);wait(600ms);
+ 
+do;look(WEST);wait(10ms);keydown(back);keydown(jump);until(%XPOS%=716);keyup(back);keyup(jump);
+do;look(WEST);wait(10ms);keydown(sneak);keydown(back);until(%XPOS%=719);keyup(back);keyup(sneak);wait(600ms);
+do;look(SOUTH);wait(10ms);keydown(forward);keydown(jump);until(%ZPOS%=671);keyup(forward);keyup(jump);
+do;look(SOUTH);wait(10ms);keydown(forward);until(%ZPOS%=674);keyup(forward);wait(600ms);
+do;look(SOUTH);wait(10ms);keydown(left);wait(400ms);keydown(sneak);until(%XPOS%=723);keyup(left);wait(600ms);
+ 
+do(18);look(180,0)gui();key(attack);wait(%#delay3%ms);loop;keyup(sneak);wait(600ms);
+ 
+ 
+}$$/warp vip$${wait(%#delay%);}$$/warp vip$${wait(%#delay%);
+keydown(jump);wait(700ms);keyup(jump);wait(700ms);
+ 
+ 
+do;look(WEST);wait(10ms);keydown(forward);keydown(jump);until(%XPOS%=687);keyup(forward);keyup(jump);
+do;look(WEST);wait(10ms);keydown(forward);keydown(sneak);until(%XPOS%=684);keyup(forward);keyup(sneak);wait(600ms);
+do;look(NORTH);wait(10ms);keydown(forward);keydown(jump);until(%ZPOS%=636);keyup(forward);keyup(jump);wait(600ms);
+do;look(NORTH);wait(10ms);keydown(left);wait(200ms);keydown(sneak);until(%XPOS%=681);keyup(left);wait(600ms);
+ 
+do(18);look(0,0);gui();key(attack);wait(%#delay3%ms);loop;keyup(sneak);
+ 
+}$$[sleep escavaçao] itens vendidos, afk, voltando a escavar !!$${
+wait(700ms);
+ 
+}$$/home trap$${wait(%#delay%);}$$/home trap$${wait(%#delay%);
+keydown(jump);wait(700ms);keyup(jump);wait(700ms);
+ 
+ 
+                                            wait(600ms);
+                                            gui(inventory);
+                                            wait(1);
+                                            FOR(#u,9,44);
+                                            GETSLOTITEM(%#u%,#idu,#stacku);
+                                            IF(%#idu%=87);
+                                            wait(%#delay2%ms);
+                                            SLOTCLICK(%#u%);
+ 
+                                            SLOTCLICK(-999);
+                                            ENDIF; 
+                                            NEXT;
+                                            FOR(#u,9,44);
+                                            GETSLOTITEM(%#u%,#idu,#stacku);
+                                            IF(%#idu%=354);
+                                            wait(%#delay2%ms);
+                                            SLOTCLICK(%#u%);
+ 
+                                            SLOTCLICK(-999);
+                                            ENDIF; 
+                                            NEXT;
+                                            FOR(#u,9,44);
+                                            GETSLOTITEM(%#u%,#idu,#stacku);
+                                            IF(%#idu%=2267);
+                                            wait(%#delay2%ms);
+                                            SLOTCLICK(%#u%);
+ 
+                                            SLOTCLICK(-999);
+                                            ENDIF; 
+                                            NEXT;
+                                            FOR(#u,9,44);
+                                            GETSLOTITEM(%#u%,#idu,#stacku);
+                                            IF(%#idu%=289);
+                                            wait(%#delay2%ms);
+                                            SLOTCLICK(%#u%);
+ 
+                       SLOTCLICK(-999);
+                       ENDIF; 
+                       NEXT;
+                       wait(1);
+                       do;
+ 
+ 
+if(%#bau%=1);look(208,347);endif;
+if(%#bau%=2);look(221,344);endif;
+if(%#bau%=3);look(209,2);endif;
+if(%#bau%=4);look(220,3);endif;
+ 
+ 
+wait(1);key(use);wait(%#delay%);
+ 
+ 
+                                                       for(#slotn,54,80);
+ 
+                                                            GETSLOTITEM(%#slotn%,#id,#stack);
+ 
+                                                       if((%#id%=%#pa%) || (%#id%=%#bloco%) || (%#id%=122) || (%#id%=320));
+ 
+                                                            else;
+                                                            slotclick(%#slotn%,l,true);
+                                                            wait(%#delay2%ms);
+                                                            endif;
+                                                            next;
+                                                            wait(%#delay2%ms);
+                                                            getslotitem(53,#id,#stack);
+                                                            wait(%#delay2%ms);
+ 
+                                                       if(%#stack%!=0);inc(#bau);
+ 
+                                                            endif;
+ 
+ 
+                       if(%#bau%=5);
+ 
+                            unset(peels2);
+                            log("&d»» &6Baus cheios, voltando a escavar.");
+                            gui();
+                            else;
+                            gui();
+                            endif;
+                            until(%#stack%=0);
+ 
+ 
+}$$/home macro$${wait(%#delay%);}$$/home macro$${wait(%#delay%);
+keydown(jump);wait(700ms);keyup(jump);wait(700ms);
+ 
+ 
+endif;
+endif;
+ 
+gui(inventory);
+wait(1100ms);
+for(#slot,38,44);
+GETSLOTITEM(%#slot%,#id,#stack);
+if(%#id%=%#bloco%);
+next;
+else;
+slotclick(%#slot%,l,true);
+wait(%#delay2%ms);
+endif;
+next;
+for(#slot,9,35);
+GETSLOTITEM(%#slot%,#id,#stack);
+if(%#id%=%#bloco%);
+slotclick(%#slot%,l,true);
+wait(%#delay2%ms);
+endif;
+next;
+GETSLOTITEM(43,#id,#stack);
+if(%#id%=%#bloco%);
+else;
+log("&d»» &6Poucos blocos detectado, indo buscar mais.");
+gui();
+ 
+ 
+}$$/home trap$${wait(%#delay%);}$$/home trap$${wait(%#delay%);
+keydown(jump);wait(700ms);keyup(jump);wait(700ms);
+ 
+ 
+                                          look(313,4);
+                                          wait(500ms);
+                                          key(use);
+                                          wait(%#delay%);
+                                          #click=0;
+                                          #id=13;
+                                          do;
+                                          GETSLOTITEM(86,#id,#stack);
+                                          wait(%#delay2%ms);
+ 
+                                     if(%#id%=%#bloco%);
+ 
+                                          #tem=1;
+                                          else;
+                                          #tem=0;
+                                          endif;
+                                          slotclick(%#click%,l,true);
+                                          wait(%#delay2%ms);
+                                          inc(#click,1);
+                                          until(%#tem%=1);
+                                          gui();
+                                          wait(1);
+ 
+ 
+}$$/home macro$${wait(%#delay%);}$$/home macro$${wait(%#delay%);
+keydown(jump);wait(700ms);keyup(jump);wait(700ms);
+ 
+ 
+endif;
+gui();
+loop;
+endif;
+ 
+}$$
