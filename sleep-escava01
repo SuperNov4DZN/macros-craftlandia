@@ -1,5 +1,5 @@
 $${
-
+ 
                 IF(sleepesc);
                  WAIT(300MS);
                  CLEARCHAT;
@@ -19,7 +19,7 @@ SET(sleepesc);
 #sleepskip=1;
 #sleepnext=1;
 ENDIF;
-
+ 
 IF((%#sleepbloco%=null) || (%#sleepferramenta%=null) || (%#sleeplixeira%=null) || (%#sleepencantamento%=null) || (%#sleepdiscos%=null));
 #sleepnext=2;
 ELSE;
@@ -185,11 +185,11 @@ LOG("");
     ENDIF;
 CLEARCHAT;
 ENDIF;
-
+ 
 LOG("&8[!] Ferramenta: %&sleepferramentanome% &8[!]");
 LOG("&8[!] Bloco: %&sleepbloconome% &8[!]");
 LOG("&6 [!] &7Nunca ligue esta macro caso nao tenha pelo menos &25 &7packs de blocos e &22 &7pack de minério para repor, caso contrário a macro será desligada. &6[!]");
-
+ 
 UNSET(sleeplivrobau);
 UNSET(@sleepbook);
 UNSET(@sleep5s);
@@ -198,7 +198,7 @@ UNSET(@sleep5s);
 #sleepbaucheio=1;
 #sleepblocobau=1;
 #sleepbau=1;
-
+ 
 IFMATCHES(%DIRECTION%,N);
 &sleephitdir="NORTH";
 ENDIF;
@@ -211,7 +211,7 @@ ENDIF;
 IFMATCHES(%DIRECTION%,E);
 &sleephitdir="EAST";
 ENDIF;
-
+ 
 DO;
     DO(900);
 LOOK(%&sleephitdir%);
@@ -262,7 +262,7 @@ UNSET(@sleep5s);
          ENDIF;
 ENDIF;
     LOOP;
-
+ 
 LOG(" &6[!] &7Inventário sendo reorganizado e verificado. &6[!]");
 LOG("");
 GUI(INVENTORY);
@@ -270,7 +270,7 @@ GUI(INVENTORY);
 #sleepfalminerio=0;
 #sleepfalbloco=0;
 WAIT(300MS);
-
+ 
     GETSLOTITEM(33,#idche,#stackche);
 FOR(#slotorg,36,44);
 GETSLOTITEM(%#slotorg%,#idorg,#stackorg);
@@ -332,7 +332,7 @@ ENDIF;
      LOG(" &6[!] &7Nao há nenhum %&sleepferramentanome% no baú, este reabastecimento esta desativado, tentando voltar a escavar. &6[!]");
      LOG("");
     ENDIF;
-
+ 
 IF((%#sleepdiscos%=1) && (%#sleepinvbloco%=1) || (%#sleepinvminerio%=1) || (%#sleepinvche%=2));
      LOG(" &6[!] &7Você optou por vender os discos automaticamente na Warp Vip, portando, vendendo discos. &6[!]");
      LOG("");
@@ -447,7 +447,7 @@ LOG(" &6[!] &7Você optou por nao vender os discos automaticamente, portando, pu
 }$$/home sleepescbaus$${WAIT(3250MS);}$$/home sleepescbaus$${WAIT(3250MS);
      KEYDOWN(JUMP);WAIT(1300MS);KEYUP(JUMP);WAIT(1300MS);
 ENDIF;
-
+ 
     IF((%#sleeplixeira%=2) && (%#sleepinvbloco%=1) || (%#sleepinvminerio%=1) || (%#sleepinvche%=2));
      LOG(" &6[!] &7Você optou por armazenar só livro e diamante, o resto serem jogados na lixeira, portando, descartando itens. &6[!]");
      LOG("");
@@ -506,7 +506,7 @@ IFMATCHES(%DIRECTION%,E);
         &sleepbaudir="EAST";
      ENDIF;
 ENDIF;
-
+ 
     IF((%#sleeplixeira%=1) && (%#sleepbaucheio%=1) && (%#sleepinvbloco%=1) || (%#sleepinvminerio%=1) || (%#sleepinvche%=2));
      LOG(" &6[!] &7Você optou por armazenar itens e nao joga-los na lixeira, portando, armazenando itens. &6[!]");
      LOG("");
@@ -616,7 +616,7 @@ IF(%#sleepbau%=22);
      FOR(#slot,54,89);
 GETSLOTITEM(%#slot%,#id,#stack);
 WAIT(100MS);
-IF((%#id%=%#sleepferramenta%) || (%#id%=%#sleepminerio%) || (%#id%=%#sleepbloco%) || (%#id%=122) || (%#id%=387));
+IF((%#id%=%#sleepferramenta%) || (%#id%=%#sleepminerio%) || (%#id%=%#sleepbloco%) || (%#id%=122));
 NEXT;
 ELSE;
 SLOTCLICK(%#slot%,L,TRUE);
@@ -625,7 +625,7 @@ ENDIF;
      FOR(#slot,54,89);
 GETSLOTITEM(%#slot%,#id,#stack);
 WAIT(1MS);
-IF((%#id%=%#sleepferramenta%) || (%#id%=%#sleepminerio%) || (%#id%=%#sleepbloco%) || (%#id%=122) || (%#id%=387));
+IF((%#id%=%#sleepferramenta%) || (%#id%=%#sleepminerio%) || (%#id%=%#sleepbloco%) || (%#id%=122));
 NEXT;
 ELSE;
 SLOTCLICK(%#slot%,L,TRUE);
@@ -768,14 +768,14 @@ ENDIF;
         ENDIF;
 ENDIF;
     ENDIF;
-
+ 
 LOG("&8[!] &8Retomando escavaçao &8[!]");
 }$$/home sleepesc$${
 WAIT(1250MS);
 GUI();
-
+ 
 LOOP;
 ENDIF;
 ENDIF;
-            
+           
 }$$
